@@ -1,0 +1,55 @@
+.box50 {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
+  }
+  .myfooter.ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+  .myfooter.ul > li > a {
+    text-decoration: none;
+    color: white;
+  }
+  .product-star {
+    color: orange;
+    margin-bottom: 19px;
+    cursor: pointer;
+  }
+  .btn {
+    border: 1px solid rgb(167, 11, 11);
+    text-decoration: none;
+    padding: 10px 20px;
+    background: linear-gradient(
+      to right,
+      rgb(144, 114, 114, rgba(195, 29, 29, 0.877))
+    );
+  }
+  
+  /*about  */
+  .about {
+    width: 100%;
+    height: 100vh;
+    padding: 35px 0;
+  }
+  .about h1 {
+    font-size: 60px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, red, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+  }
+  .about h1 span {
+    background: linear-gradient(to right, red, black);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: 15px;
+  }
+  
