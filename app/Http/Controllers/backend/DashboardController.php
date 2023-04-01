@@ -9,6 +9,6 @@ class DashboardController extends Controller
 {
     function index()
     {
-        echo"View";
+        return view('backend.dashboard.index');
     }
 }
