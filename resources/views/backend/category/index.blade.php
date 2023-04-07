@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title','Tất cả danh mục sản phẩm')
 @section('content')
 
 <div class="content-wrapper">
@@ -28,7 +29,7 @@
          <div class="row">
           <div class="col-md-6"></div>
           <div class="col-md-6 text-right">
-            <a href="" class="btn btn-sm btn-success">Thêm</a>
+            <a href="{{route('category.create')}}" class="btn btn-sm btn-success">Thêm</a>
           </div>
         </div> 
         </div>
@@ -52,9 +53,9 @@
               <td>{{$category->name}}</td>
               <td>{{$category->slug}}</td>
               <td>
-                 <a href="#" class="btn btn-sm btn-info">Edit</a>
-                 <a href="#" class="btn btn-sm btn-primary">View</a>
-                 <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                 <a href="{{route('category.edit',['category'=>$category->id])}}" class="btn btn-sm btn-info">Edit</a>
+                 <a href="{{route('category.show',['category'=>$category->id])}}" class="btn btn-sm btn-primary">View</a>
+                 <a href="{{route('category.destroy',['category'=>$category->id])}}" class="btn btn-sm btn-danger">Delete</a>
               </td>
               <td>{{$category->id}}</td>
              

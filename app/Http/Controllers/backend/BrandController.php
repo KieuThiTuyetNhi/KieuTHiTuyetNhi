@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    function index()
+   public function index()
     {
         echo"Danh sach";
+    }
+    public function create()
+    {
+
+    }
+    public function store(Request $request)
+    {
+
     }
 }

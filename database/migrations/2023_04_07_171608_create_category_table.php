@@ -9,7 +9,7 @@ class CreateCategoryTable extends Migration
    
     public function up()
     {
-        Schema::create('KTTN_categogy', function (Blueprint $table) {
+        Schema::create('KTTN_category', function (Blueprint $table) {
             $table->id();
             $table->string('name',1000);
             $table->string('slug',1000);
@@ -29,6 +29,6 @@ class CreateCategoryTable extends Migration
    
     public function down()
     {
-        Schema::dropIfExists('KTTN_categogy');
+        Schema::dropIfExists('KTTN_category');
     }
 }
