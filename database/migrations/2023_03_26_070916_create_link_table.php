@@ -11,13 +11,9 @@ class CreateLinkTable extends Migration
     {
         Schema::create('KTTN_link', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
-            $table->integer('tableid');
-            $table->string('type');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('status');
-            $table->timestamps();
+            $table->string('slug',1000);
+            $table->unsignedInteger('table_id');
+            $table->string('type',100);
         });
     }
 

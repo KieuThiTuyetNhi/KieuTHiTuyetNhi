@@ -15,12 +15,15 @@ class CreateContactTable extends Migration
     {
         Schema::create('KTTN_contact', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('title');
-            $table->string('content');
-            $table->integer('status');
+            $table->unsignedInteger('user_id');
+            $table->string('name',1000);
+            $table->string('email',1000);
+            $table->string('phone',1000);
+            $table->string('title',255);
+            $table->text('content');
+            $table->unsignedInteger('replay_id');
+            $table->unsignedInteger('updated_id');
+            $table->unsignedTinyInteger('status');
             $table->timestamps(); 
         });
     }

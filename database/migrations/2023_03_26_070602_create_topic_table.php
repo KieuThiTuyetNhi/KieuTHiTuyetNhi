@@ -11,16 +11,16 @@ class CreateTopicTable extends Migration
     {
         Schema::create('KTTN_topic', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->integer('parentid');
-            $table->integer('orders');
-            $table->string('img');
-            $table->string('metakey');
-            $table->string('metadesc');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('status');
+            $table->string('name',1000);
+            $table->string('slug',1000);
+            $table->unsignedInteger('parent_id');
+            $table->unsignedInteger('sort_order');
+            $table->string('image',1000);
+            $table->string('metakey',255);
+            $table->string('metadesc',255);
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by');
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
 
         });

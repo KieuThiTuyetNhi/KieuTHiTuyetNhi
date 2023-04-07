@@ -15,15 +15,11 @@ class CreateMenuTable extends Migration
     {
         Schema::create('KTTN_menu', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('link');
-            $table->integer('parentid');
-            $table->integer('orders');
-            $table->integer('tableid');
-            $table->string('type');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('status');
+            $table->string('name',1000);
+            $table->string('link',1000);
+            $table->unsignedInteger('table_id');
+            $table->string('type',100);
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
 
         });

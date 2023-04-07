@@ -11,11 +11,12 @@ class CreateBrandTable extends Migration
     {
         Schema::create('KTTN_brand', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->string('img');
-            $table->string('metakey');
-            $table->string('metadesc');
+            $table->string('name',1000);
+            $table->string('slug',1000);
+            $table->string('image',1000);
+            $table->unsignedInteger('sort_order');
+            $table->string('metakey',255);
+            $table->string('metadesc',255);
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->integer('status');

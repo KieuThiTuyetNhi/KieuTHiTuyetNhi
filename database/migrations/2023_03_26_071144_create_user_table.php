@@ -11,14 +11,18 @@ class CreateUserTable extends Migration
     {
         Schema::create('KTTN_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('gender');
-            $table->string('username');
-            $table->string('password');
-            $table->string('address');
-            $table->integer('status');
+            $table->string('name',255)->comment('Họ');
+            $table->string('username',255);
+            $table->string('password',255);
+            $table->string('email',255);
+            $table->string('phone',20);
+            $table->string('address',255);
+            $table->string('gender',255);
+            $table->string('roles',255);
+            $table->string('image',255);
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by');
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
         });
     }

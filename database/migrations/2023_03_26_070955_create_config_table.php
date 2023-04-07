@@ -11,16 +11,14 @@ class CreateConfigTable extends Migration
     {
         Schema::create('KTTN_config', function (Blueprint $table) {
             $table->id();
-            $table->string('site_name');
-            $table->string('hotline');
-            $table->string('email');
-            $table->string('logo');
-            $table->string('icon');
-            $table->string('metakey');
-            $table->string('metadesc');
-            $table->string('images');
-            $table->integer('status');
-
+            $table->string('site_name',1000);
+            $table->string('hotline',255);
+            $table->string('email',255);
+            $table->string('address',255);
+            $table->string('author',255);
+            $table->string('metakey',255);
+            $table->string('metadesc',255);
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
         });
     }

@@ -4,21 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSliderTable extends Migration
+class CreateProductValueTable extends Migration
 {
-   
+    
     public function up()
     {
-        Schema::create('KTTN_slider', function (Blueprint $table) {
+        Schema::create('KTTN_product_value', function (Blueprint $table) {
             $table->id();
-            $table->string('name',1000);
-            $table->string('link',1000);
+            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('option_id');
             $table->unsignedInteger('sort_order');
-            $table->string('image',1000);
-            $table->string('posistion',255);
+            $table->string('value',255);
             $table->unsignedInteger('created_by');
             $table->unsignedInteger('updated_by');
-            $table->unsignedTinyInteger('status');
+            $table->unsignedInteger('status');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ class CreateSliderTable extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('KTTN_slider');
+        Schema::dropIfExists('KTTN_product_value');
     }
 }

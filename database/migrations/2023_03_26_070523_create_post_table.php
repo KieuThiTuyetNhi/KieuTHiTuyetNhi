@@ -11,18 +11,17 @@ class CreatePostTable extends Migration
     {
         Schema::create('KTTN_post', function (Blueprint $table) {
             $table->id();//id
-            $table->integer('topicid');
-            $table->integer('title');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('img');
-            $table->string('metakey');
-            $table->string('metadesc');
-            $table->string('detail');
-            $table->string('type');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('status');
+            $table->unsignedInteger('topic_id');
+            $table->string('title',1000);
+            $table->string('slug',1000);
+            $table->longText('detail');
+            $table->string('images',1000);
+            $table->string('type',100);
+            $table->string('metakey',255);
+            $table->string('metadesc',255);
+            $table->unsignedTinyInteger('created_by');
+            $table->unsignedTinyInteger('updated_by');
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
         });
     }

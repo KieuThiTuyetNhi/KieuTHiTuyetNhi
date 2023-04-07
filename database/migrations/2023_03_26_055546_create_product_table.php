@@ -11,21 +11,17 @@ class CreateProductTable extends Migration
     {
         Schema::create('KTTN_product', function (Blueprint $table) {
             $table->id();//id
-            $table->integer('catid');
-            $table->integer('brandid');
-            $table->string('name');
-            $table->string('slug');
-            $table->string('img');
-            $table->string('metakey');
-            $table->string('metadesc');
-            $table->string('detail');
-            $table->integer('number');
-            $table->double('price',12,2);
-            $table->double('price_buy',12,2);
-            $table->double('price_sale',12,2);
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('status');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('brand_id');
+            $table->string('name',1000);
+            $table->string('slug',1000);
+            $table->float('price');
+            $table->longText('detail');
+            $table->string('metakey',255);
+            $table->string('metadesc',255);
+            $table->unsignedTinyInteger('created_by');
+            $table->unsignedTinyInteger('updated_by');
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
         });
     }

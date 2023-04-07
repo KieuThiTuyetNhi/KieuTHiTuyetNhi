@@ -11,14 +11,14 @@ class CreateOrderTable extends Migration
     {
         Schema::create('KTTN_order', function (Blueprint $table) {
             $table->id();
-            $table->integer('userid');
-            $table->string('fullname');
-            $table->string('address');
-            $table->string('email');
-            $table->string('phone');
-            $table->integer('created_by');
-            $table->integer('updated_by');
-            $table->integer('status');
+            $table->unsignedInteger('user_id');
+            $table->string('name',255);
+            $table->string('phone',255);
+            $table->string('email',255);
+            $table->string('address',255);
+            $table->text('note');
+            $table->unsignedTinyInteger('updated_by');
+            $table->unsignedTinyInteger('status');
             $table->timestamps();
 
         });
