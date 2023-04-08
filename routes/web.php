@@ -13,6 +13,12 @@ Route::prefix('admin')->group(function()
 {
    Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
    Route::resource('brand',BrandController::class);
+   //Category
    Route::resource('category',CategoryController::class);
+   Route::prefix('category')->group(function()
+{
+   Route::get('status/{category}',[CategoryController::class,'status'])->name('category.status');
+   Route::get('delete/{category}',[CategoryController::class,'delete'])->name('category.delete');
+});
    Route::resource('product',ProductController::class);
 });
