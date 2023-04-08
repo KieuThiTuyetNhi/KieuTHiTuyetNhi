@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title','Thêm danh mục sản phẩm')
 @section('content')
-<form action="{{route('category.store')}}" method="post">
+<form action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -43,7 +43,51 @@
             </div>
             <div class="card-body">
               @includeIf('backend.message_alert')
-             
+             <div class="row">
+                <div class="col-md-9">
+                    <div class="mb-3">
+                        <label for="name">Tên danh mục</label>
+                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
+                    </div>
+                    <div class="mb-3">
+                        <label for="metakey">Từ khóa</label>
+                        <textarea name="metakey" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm" >{{old('metakey')}}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="metadesc">Mô tả</label>
+                        <textarea name="metadesc" id="metadesc" class="form-control" placeholder=" Nhập mô tả" >{{old('metadesc')}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="parent_id">Danh mục cha</label>
+                        <select class="form-control" name="parent_id" id="parent_id">
+                            <option value="0">--Cấp cha--</option>
+                            {!!$html_parent_id!!}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sort_order">Vị trí sắp xếp</label>
+                        <select class="form-control" name="sort_order" id="sort_order">
+                            <option value="0">--Vị trí sắp xếp--</option>
+                            {!!$html_sort_order!!}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image">Ảnh đại diện</label>
+                        <input type="file" value="{{old('image')}}" name="image" id='image' class="form-control" placeholder="Nhập tên danh mục">
+                    </div>
+                    <div class="mb-3">
+                        <label for="status">Trạng thái</label>
+                        <select class="form-control" name="status" id="status">
+                            <option value="1">Xuất bản </option>
+                            <option value="2">Chưa xuất bản</option>
+                            
+                        </select>
+                    </div>
+                </div>
+               
+             </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
