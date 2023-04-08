@@ -51,6 +51,7 @@
               </td>
               <td>{{$category->name}}</td>
               <td>{{$category->slug}}</td>
+              <td>{{$category->created_at}}</td>
               <td>
                  <a href="#" class="btn btn-sm btn-info">Edit</a>
                  <a href="#" class="btn btn-sm btn-primary">View</a>

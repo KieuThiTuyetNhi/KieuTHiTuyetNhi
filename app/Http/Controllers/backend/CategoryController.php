@@ -18,7 +18,7 @@ class CategoryController extends Controller
     
     public function create()
     {
-       echo "đến đây";
+       return view('backend.category.create');
     }
 
     
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     {
        echo "xóa";
     }
-    #GET:admin category/status/1
+// admin category/status/1  
     public function status($id)
     {
        $category = Category::find($id);
@@ -79,7 +79,7 @@ class CategoryController extends Controller
          'msg'=>'Thay đổi trạng thái thành công!']);
        }
     }
-    #GET:admin category/delete/1
+//    admin category/delete/1
     public function delete($id)
     {
        $category = Category::find($id);

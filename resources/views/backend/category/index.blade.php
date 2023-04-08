@@ -12,7 +12,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điiều khiển</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
               <li class="breadcrumb-item active">Tất cả danh mục</li>
             </ol>
           </div>
@@ -29,7 +29,7 @@
          <div class="row">
           <div class="col-md-6">
             <button class="btn btn-sm btn-danger" type="submit">
-              <i class="fa-sharp fa-solid fa-xmark">Xóa</i></button>
+              <i class="far fa-calendar-times"> Xóa</i></button>
           </div>
           <div class="col-md-6 text-right">
             <a href="{{route('category.create')}}" class="btn btn-sm btn-success">
