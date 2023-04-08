@@ -15,10 +15,13 @@ Route::prefix('admin')->group(function()
    Route::resource('brand',BrandController::class);
    //Category
    Route::resource('category',CategoryController::class);
+   Route::get('category_trash',[CategoryController::class,'trash'])->name('category.trash');
    Route::prefix('category')->group(function()
 {
    Route::get('status/{category}',[CategoryController::class,'status'])->name('category.status');
-   Route::get('delete/{category}',[CategoryController::class,'delete'])->name('category.delete');
+   Route::get('restore/{category}',[CategoryController::class,'restore'])->name('category.restore');
+   Route::get('destroy/{category}',[CategoryController::class,'destroy'])->name('category.destroy');
+
 });
    Route::resource('product',ProductController::class);
 });

@@ -32,12 +32,9 @@
               <i class="far fa-calendar-times"> Xóa</i></button>
           </div>
           <div class="col-md-6 text-right">
-            <a href="{{route('category.create')}}" class="btn btn-sm btn-success">
-           <i class="fas fa-plus"></i>Thêm
+            <a href="{{route('category.index')}}" class="btn btn-sm btn-info">
+                <i class="fas fa-trash"></i>Quay về danh sách
             </a>
-            <a href="{{route('category.trash')}}" class="btn btn-sm btn-danger">
-              <i class="fas fa-trash"></i>Thùng rác
-               </a>
           </div>
         </div> 
         </div>
@@ -64,16 +61,8 @@
               <td>{{$category->slug}}</td>
               <td class="text-center">{{$category->created_at}}</td>
               <td class="text-center">
-                @if ($category->status==1)
-                <a href="{{route('category.status',['category'=>$category->id])}}" class="btn btn-sm btn-success">
-                  <i class="fas fa-toggle-on"></i></a> 
-                @else
-                <a href="{{route('category.status',['category'=>$category->id])}}" class="btn btn-sm btn-danger">
-                  <i class="fas fa-toggle-off"></i></i></a>  
-                @endif
-                 <a href="{{route('category.edit',['category'=>$category->id])}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-edit"></i></a>
-                 <a href="{{route('category.show',['category'=>$category->id])}}" class="btn btn-sm btn-primary">
+                
+                 <a href="{{route('category.restore',['category'=>$category->id])}}" class="btn btn-sm btn-primary">
                   <i class="fas fa-eye"></i></a>
                  <a href="{{route('category.destroy',['category'=>$category->id])}}" class="btn btn-sm btn-danger">
                   <i class="fas fa-trash"></i></a>
