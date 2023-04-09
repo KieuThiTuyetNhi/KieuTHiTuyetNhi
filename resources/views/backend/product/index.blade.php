@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Tất cả danh mục sản phẩm')
+@section('title','Tất cả  sản phẩm')
 @section('content')
 
 <div class="content-wrapper">
@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả danh mục sản phẩm</h1>
+            <h1>Tất cả  sản phẩm</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-              <li class="breadcrumb-item active">Tất cả danh mục</li>
+              <li class="breadcrumb-item active">Tất cả sản phẩm </li>
             </ol>
           </div>
         </div>
@@ -32,10 +32,10 @@
               <i class="far fa-calendar-times"> Xóa</i></button>
           </div>
           <div class="col-md-6 text-right">
-            <a href="{{route('category.create')}}" class="btn btn-sm btn-success">
+            <a href="{{route('product.create')}}" class="btn btn-sm btn-success">
            <i class="fas fa-plus"></i>Thêm
             </a>
-            <a href="{{route('category.trash')}}" class="btn btn-sm btn-danger">
+            <a href="{{route('product.trash')}}" class="btn btn-sm btn-danger">
               <i class="fas fa-trash"></i>Thùng rác
                </a>
           </div>
@@ -56,32 +56,32 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($list_category as $category)
+            @foreach ($list_product as $product)
             <tr>
               <td class="text-center">
                 <input type="checkbox">
               </td>
-              <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('images/category/' . $category->image) }}"
-                alt="{{ $category->image }}"></td>
-              <td class="text-center align-middle">{{$category->name}}</td>
-              <td class="text-center align-middle">{{$category->slug}}</td>
-              <td class="text-center align-middle">{{$category->created_at}}</td>
+              <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('images/product/' . $product->image) }}"
+                alt="{{ $product->image }}"></td>
+              <td class="text-center align-middle">{{$product->name}}</td>
+              <td class="text-center align-middle">{{$product->slug}}</td>
+              <td class="text-center align-middle">{{$product->created_at}}</td>
               <td class="text-center align-middle">
-                @if ($category->status==1)
-                <a href="{{route('category.status',['category'=>$category->id])}}" class="btn btn-sm btn-success">
+                @if ($product->status==1)
+                <a href="{{route('product.status',['product'=>$product->id])}}" class="btn btn-sm btn-success">
                   <i class="fas fa-toggle-on"></i></a> 
                 @else
-                <a href="{{route('category.status',['category'=>$category->id])}}" class="btn btn-sm btn-danger">
+                <a href="{{route('product.status',['product'=>$product->id])}}" class="btn btn-sm btn-danger">
                   <i class="fas fa-toggle-off"></i></i></a>  
                 @endif
-                 <a href="{{route('category.edit',['category'=>$category->id])}}" class="btn btn-sm btn-info">
+                 <a href="{{route('product.edit',['product'=>$product->id])}}" class="btn btn-sm btn-info">
                   <i class="fas fa-edit"></i></a>
-                 <a href="{{route('category.show',['category'=>$category->id])}}" class="btn btn-sm btn-primary">
+                 <a href="{{route('product.show',['product'=>$product->id])}}" class="btn btn-sm btn-primary">
                   <i class="fas fa-eye"></i></a>
-                 <a href="{{route('category.delete',['category'=>$category->id])}}" class="btn btn-sm btn-danger">
+                 <a href="{{route('product.delete',['product'=>$product->id])}}" class="btn btn-sm btn-danger">
                   <i class="fas fa-trash"></i></a>
               </td>
-              <td class="text-center align-middle">{{$category->id}}</td>
+              <td class="text-center align-middle">{{$product->id}}</td>
              
             </tr>
             @endforeach

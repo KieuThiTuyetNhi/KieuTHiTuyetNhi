@@ -7,6 +7,7 @@ use App\Models\Link;
 use Illuminate\Support\Str;
 use App\Http\Requests\CategoryStoreRequest;  
 use App\Http\Requests\CategoryUpdateRequest;   
+use Illuminate\Support\Facades\File;
 class CategoryController extends Controller
 {
     public function index()
@@ -44,6 +45,17 @@ class CategoryController extends Controller
        $category->status=$request->status;
        $category->created_at= date('Y-m-d H:i:s');
        $category->created_by=1;
+       //Upload file
+        if ($request->has('image')) {
+        $path_dir = "images/category"; // nơi lưu trữ
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+        $filename = $category->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+        $file->move($path_dir, $filename);
+
+        $category->image = $filename;
+    }
+    // End upload 
        
       if( $category->save())
       {
@@ -97,9 +109,23 @@ class CategoryController extends Controller
        $category->status=$request->status;
        $category->updated_at= date('Y-m-d H:i:s');
        $category->updated_by=1;
+        // Upload file
+        if ($request->has('image')) {
+          $path_dir = "images/category/";
+          if (File::exists(($path_dir . $category->image))) {
+              File::delete(($path_dir . $category->image));
+          }
+  
+          $file = $request->file('image');
+          $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
+          $filename = $category->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+          $file->move($path_dir, $filename);
+          $category->image = $filename;
+      }
+      //end upload file
       if( $category->save())
       {
-        $link = Link::where([['type'],['='],['category'],['table_id'],'=',$id])->first();
+        $link = Link::where([['type','=','category'],['table_id','=',$id]])->first();
         $link->slug =$category->slug;
         $link->save();
         return redirect()->route('category.index')->with('message',['type'=>'success',
@@ -120,11 +146,11 @@ class CategoryController extends Controller
            }
            if( $category->delete())
            {
-             $link = Link::where([['type'],['='],['category'],['table_id'],'=',$id])->first();
+             $link = Link::where([['type','=','category'],['table_id','=',$id]])->first();
              
              $link->delete();
              return redirect()->route('category.trash')->with('message',['type'=>'success',
-             'msg'=>'Thêm mẫu tin thành công!']);
+             'msg'=>'Xóa mẫu tin thành công!']);
            }
              return redirect()->route('category.trash')->with('message',['type'=>'danger',
              'msg'=>'Xóa không thành công!']);

@@ -44,7 +44,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($list_category as $category)
+            {{-- @foreach ($list_category as $category)
             <tr>
               <td>
                 <input type="checkbox">
@@ -60,7 +60,7 @@
               <td>{{$category->id}}</td>
              
             </tr>
-            @endforeach
+            @endforeach --}}
           </tbody>
          </table>
         </div>
