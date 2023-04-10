@@ -11,6 +11,10 @@ use App\Http\Controllers\backend\ContactController;
 
 
 Route::get('/',[SiteController::class,'index'])->name('site.home');
+Route::get('lien-he',[LienheController::class,'index'])->name('site.index');
+Route::get('khach-hang',[LienheController::class,'index'])->name('site.index');
+Route::get('gio-hang',[LienheController::class,'index'])->name('site.index');
+
 
 Route::prefix('admin')->group(function()
 {
@@ -68,3 +72,6 @@ Route::get('delete/{product}',[ProductController::class,'delete'])->name('produc
  });
 
 });
+
+
+Route::get('{slug}',[SiteController::class,'index'])->name('slug.home');

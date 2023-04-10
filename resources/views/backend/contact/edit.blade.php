@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title','Cập nhật danh mục sản phẩm')
+@section('title','Cập nhật liên hệ')
 @section('content')
-<form action="{{route('category.update',['category'=>$category->id])}}" method="post" enctype="multipart/form-data">
+<form action="{{route('contact.update',['contact'=>$contact->id])}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="content-wrapper">
@@ -10,12 +10,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Cập nhật danh mục sản phẩm</h1>
+                <h1>Cập nhật liên hệ</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Cập nhật danh mục</li>
+                  <li class="breadcrumb-item active">Cập nhật liên hệ</li>
                 </ol>
               </div>
             </div>
@@ -36,7 +36,7 @@
                 <button type="submit" class="btn btn-sm btn-success">
                <i class="fas fa-save"></i>Lưu[Cập nhật]
                 </button>
-                <a href="{{route('category.index')}}" class="btn btn-sm btn-info">
+                <a href="{{route('contact.index')}}" class="btn btn-sm btn-info">
                   <i class="fas fa-trash"></i>Quay về danh sách
                    </a>
               </div>
@@ -47,8 +47,8 @@
              <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <label for="name">Tên danh mục</label>
-                        <input type="text" value="{{old('name',$category->name)}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
+                        <label for="name">Tên liên hệ</label>
+                        <input type="text" value="{{old('name',$contact->name)}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
                         @if ($errors->has('name'))
                            <div class="text-danger">
                           {{$errors->first('name')}}  
@@ -56,45 +56,13 @@
                         @endif
                         
                     </div>
-                    <div class="mb-3">
-                        <label for="metakey">Từ khóa</label>
-                        <textarea name="metakey" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm" >
-                            {{old('metakey',$category->metakey)}}</textarea>
-                        @if ($errors->has('metakey'))
-                           <div class="text-danger">
-                            {{$errors->first('metakey')}}  
-                           </div> 
-                         @endif
-                    </div>
-                    <div class="mb-3">
-                        <label for="metadesc">Mô tả</label>
-                        <textarea name="metadesc" id="metadesc" class="form-control" placeholder=" Nhập mô tả" >{{old('metadesc',$category->metadesc)}}</textarea>
-                        @if ($errors->has('metadesc'))
-                           <div class="text-danger">
-                            {{$errors->first('metadesc')}}  
-                           </div> 
-                         @endif
-                    </div>
+                    
+                 
                 </div>
                 <div class="col-md-3">
-                    <div class="mb-3">
-                        <label for="parent_id">Danh mục cha</label>
-                        <select class="form-control" name="parent_id" id="parent_id">
-                            <option value="0">--Cấp cha--</option>
-                            {!!$html_parent_id!!}
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="sort_order">Vị trí sắp xếp</label>
-                        <select class="form-control" name="sort_order" id="sort_order">
-                            <option value="0">--Vị trí sắp xếp--</option>
-                            {!!$html_sort_order!!}
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image">Ảnh đại diện</label>
-                        <input type="file" value="{{old('image')}}" name="image" id='image' class="form-control" placeholder="Nhập tên danh mục">
-                    </div>
+                    
+                  
+                  
                     <div class="mb-3">
                         <label for="status">Trạng thái</label>
                         <select class="form-control" name="status" id="status">

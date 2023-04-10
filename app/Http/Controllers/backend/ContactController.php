@@ -5,8 +5,8 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Link;
 use Illuminate\Support\Str;
-// use App\Http\Requests\contactStoreRequest;  
-// use App\Http\Requests\contactUpdateRequest;   
+use App\Http\Requests\ContactStoreRequest;  
+use App\Http\Requests\ContactUpdateRequest;   
 use Illuminate\Support\Facades\File;
 class ContactController extends Controller
 {
@@ -29,11 +29,11 @@ class ContactController extends Controller
        }
        return view('backend.contact.create');
     }
-    public function store(Request $request)
+    public function store(ContactStoreRequest $request)
     {
        $contact= new contact; // tạo mới
        $contact->name=$request->name;
-      //  $contact->slug=Str::slug($contact->name=$request->name,'-');
+       $contact->slug=Str::slug($contact->name=$request->name,'-');
        $contact->user_id=$request->user_id;
        $contact->email=$request->email;
        $contact->phone=$request->phone;
@@ -41,7 +41,7 @@ class ContactController extends Controller
        $contact->content=$request->content;
        $contact->replay_id=$request->replay_id;
        $contact->status=$request->status;
-      //  $contact->created_at= date('Y-m-d H:i:s');
+       $contact->created_at= date('Y-m-d H:i:s');
       //  $contact->created_by=1;
       if( $contact->save())
       {
@@ -79,17 +79,14 @@ class ContactController extends Controller
         }
         return view('backend.contact.edit',compact('contact'));
     }
-    public function update(Request $request, $id)
+    public function update(ContactUpdateRequest $request, $id)
     {
        $contact=Contact::find($id); //lấy mẫu tin sau đó cập nhật
        $contact->name=$request->name;
        $contact->slug=Str::slug($contact->name=$request->name,'-');
-       $contact->metakey=$request->metakey;
-       $contact->metadesc=$request->metadesc;
        $contact->status=$request->status;
        $contact->updated_at= date('Y-m-d H:i:s');
        $contact->updated_by=1;
-        
       if( $contact->save())
       {
         $link = Link::where([['type','=','contact'],['table_id','=',$id]])->first();

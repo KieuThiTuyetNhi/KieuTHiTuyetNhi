@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Tất cả danh mục sản phẩm')
+@section('title','Tất cả liên hệ')
 @section('content')
 
 <div class="content-wrapper">
@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả danh mục sản phẩm</h1>
+            <h1>Tất cả liên hệ</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-              <li class="breadcrumb-item active">Tất cả danh mục</li>
+              <li class="breadcrumb-item active">Tất cả liên hệ</li>
             </ol>
           </div>
         </div>
@@ -32,7 +32,7 @@
               <i class="far fa-calendar-times"> Xóa</i></button>
           </div>
           <div class="col-md-6 text-right">
-            <a href="{{route('category.index')}}" class="btn btn-sm btn-info">
+            <a href="{{route('contact.index')}}" class="btn btn-sm btn-info">
                 <i class="fas fa-trash"></i>Quay về danh sách
             </a>
           </div>
@@ -52,22 +52,22 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($list_category as $category)
+            @foreach ($list_contact as $contact)
             <tr>
               <td class="text-center">
                 <input type="checkbox">
               </td>
-              <td>{{$category->name}}</td>
-              <td>{{$category->slug}}</td>
-              <td class="text-center">{{$category->created_at}}</td>
+              <td>{{$contact->name}}</td>
+              <td>{{$contact->slug}}</td>
+              <td class="text-center">{{$contact->created_at}}</td>
               <td class="text-center">
                 
-                 <a href="{{route('category.restore',['category'=>$category->id])}}" class="btn btn-sm btn-primary">
+                 <a href="{{route('contact.restore',['contact'=>$contact->id])}}" class="btn btn-sm btn-primary">
                   <i class="fas fa-undo"></i></a>
-                 <a href="{{route('category.destroy',['category'=>$category->id])}}" class="btn btn-sm btn-danger">
+                 <a href="{{route('contact.destroy',['contact'=>$contact->id])}}" class="btn btn-sm btn-danger">
                   <i class="fas fa-trash"></i></a>
               </td>
-              <td class="text-center">{{$category->id}}</td>
+              <td class="text-center">{{$contact->id}}</td>
              
             </tr>
             @endforeach
