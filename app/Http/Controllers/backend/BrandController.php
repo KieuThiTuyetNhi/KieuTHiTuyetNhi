@@ -51,11 +51,9 @@ class BrandController extends Controller
         $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
         $filename = $brand->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
         $file->move($path_dir, $filename);
-
         $brand->image = $filename;
     }
     // End upload 
-       
       if( $brand->save())
       {
         $link = new Link();
@@ -86,13 +84,10 @@ class BrandController extends Controller
     {
         $brand =Brand::find($id);
         $list_brand=Brand::where('status','!=',0)->get();
-       
         $html_sort_order ='';
         foreach ( $list_brand as $item)
         {
-         
          $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->name.'</option>';
- 
         }
         return view('backend.brand.edit',compact('brand','html_sort_order'));
     }
@@ -113,7 +108,6 @@ class BrandController extends Controller
           if (File::exists(($path_dir . $brand->image))) {
               File::delete(($path_dir . $brand->image));
           }
-  
           $file = $request->file('image');
           $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
           $filename = $brand->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 

@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-class Brand extends Model
+
+class Menu extends Model
 {
     use HasFactory;
-    protected $table='KTTN_brand';
+    protected $table='KTTN_menu';
+   
 }

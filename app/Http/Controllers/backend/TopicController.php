@@ -118,7 +118,6 @@ class TopicController extends Controller
           if (File::exists(($path_dir . $topic->image))) {
               File::delete(($path_dir . $topic->image));
           }
-  
           $file = $request->file('image');
           $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
           $filename = $topic->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 

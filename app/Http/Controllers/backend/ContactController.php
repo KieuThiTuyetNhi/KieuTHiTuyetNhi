@@ -75,7 +75,7 @@ class ContactController extends Controller
         $list_contact=Contact::where('status','!=',0)->get();
         foreach ( $list_contact as $item)
         {
- 
+          
         }
         return view('backend.contact.edit',compact('contact'));
     }

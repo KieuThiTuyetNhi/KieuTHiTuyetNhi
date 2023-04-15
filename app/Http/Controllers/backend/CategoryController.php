@@ -52,11 +52,9 @@ class CategoryController extends Controller
         $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
         $filename = $category->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
         $file->move($path_dir, $filename);
-
         $category->image = $filename;
     }
     // End upload 
-       
       if( $category->save())
       {
         $link = new Link();
@@ -93,7 +91,6 @@ class CategoryController extends Controller
         {
          $html_parent_id .='<option value="'.$item->id.'">'.$item->name.'</option>';
          $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->name.'</option>';
- 
         }
         return view('backend.category.edit',compact('category','html_parent_id','html_sort_order'));
     }
@@ -115,7 +112,6 @@ class CategoryController extends Controller
           if (File::exists(($path_dir . $category->image))) {
               File::delete(($path_dir . $category->image));
           }
-  
           $file = $request->file('image');
           $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
           $filename = $category->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 

@@ -35,8 +35,6 @@ class ProductController extends Controller
        $product->name=$request->name;
        $product->slug=Str::slug($product->name=$request->name,'-'
     );
-       
-    
        $product->category_id=$request->category_id;
        $product->brand_id=$request->brand_id;
        $product->slug=Str::slug($product->name=$request->name,'-');
@@ -93,7 +91,6 @@ class ProductController extends Controller
        $product->status=$request->status;
        $product->updated_at= date('Y-m-d H:i:s');
        $product->updated_by=1;
-        
       if( $product->save())
       {
         $link = Link::where([['type','=','product'],['table_id','=',$id]])->first();
