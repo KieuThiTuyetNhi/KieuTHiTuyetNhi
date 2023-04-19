@@ -16,7 +16,8 @@ class Slidershow extends Component
     
     public function render()
     {
-        $list_slider=Slider::where([['status','=',1],['posistion','slidershow']])->orderBy('sort_order','ASC')->get();
-        return view('components.slidershow',compact('list_slider'));
+        $list_slider=Slider::where([['status','=',1],['posistion','slideshow']])->get();
+        // var_dump($list_slider);
+       return view('components.slidershow',compact('list_slider'));
     }
 }

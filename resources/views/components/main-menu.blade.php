@@ -2,8 +2,9 @@
     <section class="mymainmenu bg-danger">
         <div class="container">
           <div class="row">
-            <div class="col-md-3 text-white my-3">Danh mục sản phẩm</div>
-            <div class="col-md-9">
+           
+            
+            <div class="col-md-12">
               <nav class="navbar navbar-expand-lg bg-danger">
                 <div class="container-fluid">
                   <a class="navbar-brand d-none" href="#">Navbar</a>

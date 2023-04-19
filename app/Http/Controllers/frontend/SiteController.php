@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Link;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Post;
 class SiteController extends Controller
 {
@@ -20,7 +21,7 @@ class SiteController extends Controller
          $link = Link::where('slug','=',$slug)->first();
          if($link==null)
          {
-            $product = Product::where([['status','=','1'],['slug','=','$slug']])->first();
+            $product = Product::where([['status','=','1'],['slug','=',$slug]])->first();
             if($product !=null)
             {
                 return $this->product_detail($product);
@@ -74,12 +75,34 @@ class SiteController extends Controller
     //trang chủ
  public function home ()
  {
-        return view('frontend.home');
+    $cat_home=Category::where('status','=','1')->take(3)->get();
+        return view('frontend.home',compact('cat_home'));
     
  }
  public function product_category ($slug)
  {
-        return view('frontend.product-category');
+         $row_category=Category::where([['status','=','1'],['slug','=',$slug]])->first();
+        $cat_id=$row_category->id;
+        $arrcatid=array();
+        array_push($arrcatid,$cat_id);
+        $list_category2=Category::where([['status','=','1'],['parent_id','=',$cat_id]])->get();
+        if(count($list_category2)>0)
+        {
+            foreach($list_category2 as $cat2)
+            {
+                array_push($arrcatid,$cat2->id);
+                $list_category3=Category::where([['status','=','1'],['parent_id','=',$cat2->id]])->get();
+                if(count($list_category3 )>0){
+                    foreach($list_category3 as $cat3)
+                    {
+                        array_push($arrcatid, $cat3->id);
+                    }
+                }
+            }
+        }
+        //var_dump( $arrcatid);
+     $list_pro = Product::whereIn("category_id",$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->get();
+        return view('frontend.product-category',compact('row_category','list_pro'));
     
  }
  public function product_brand ($slug)
@@ -99,7 +122,7 @@ class SiteController extends Controller
  }
  public function product_detail($product)
  {
-        return view('frontend.product-detail');
+        return view('frontend.product-detail',compact('product'));
     
  }
  public function post_detail($post)

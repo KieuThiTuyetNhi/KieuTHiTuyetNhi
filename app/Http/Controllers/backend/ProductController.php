@@ -3,6 +3,8 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Link;
 use Illuminate\Support\Str;
 use App\Http\Requests\ProductStoreRequest;  
@@ -22,19 +24,26 @@ class ProductController extends Controller
     }
     public function create()
     {
-       $list_product=Product::where('status','!=',0)->get();
-      
-       foreach ( $list_product as $item)
-       {
-       }
-       return view('backend.product.create');
+      $list_product=Product::where('status','!=',0)->get();
+      $list_category=Category::where('status','!=',0)->get();
+      $list_brand= Brand::where('status','!=',0)->get();
+      $html_category_id='';
+      $html_brand_id='';
+      foreach($list_category as $item)
+      {
+        $html_category_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
+      }
+      foreach($list_brand as $item)
+      {
+        $html_brand_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
+      }
+       return view('backend.product.create',compact('html_category_id','html_brand_id'));
     }
     public function store(ProductStoreRequest $request)
     {
        $product= new Product; // tạo mới
        $product->name=$request->name;
-       $product->slug=Str::slug($product->name=$request->name,'-'
-    );
+       $product->slug=Str::slug($product->name=$request->name,'-');
        $product->category_id=$request->category_id;
        $product->brand_id=$request->brand_id;
        $product->slug=Str::slug($product->name=$request->name,'-');
@@ -45,6 +54,16 @@ class ProductController extends Controller
        $product->status=$request->status;
        $product->created_at= date('Y-m-d H:i:s');
        $product->created_by=1;
+       //Upload file
+       if ($request->has('image')) {
+        $path_dir = "public/image/product"; // nơi lưu trữ
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+        $filename = $product->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+        $file->move($path_dir, $filename);
+        $product->image = $filename;
+    }
+    // End upload 
       if( $product->save())
       {
         $link = new Link();
@@ -75,22 +94,50 @@ class ProductController extends Controller
     {
         $product =Product::find($id);
         $list_product=Product::where('status','!=',0)->get();
-        foreach ( $list_product as $item)
-        {
- 
-        }
-        return view('backend.product.edit',compact('product'));
+      $list_category=Category::where('status','!=',0)->get();
+      $list_brand= Brand::where('status','!=',0)->get();
+      $html_category_id='';
+      $html_brand_id='';
+      foreach($list_category as $item)
+      {
+        $html_category_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
+      }
+      foreach($list_brand as $item)
+      {
+        $html_brand_id .= '<option value="' . $item->id . '">' . $item->name . '</option>';
+      }
+       return view('backend.product.edit',compact('product','html_category_id','html_brand_id'));
     }
     public function update(productUpdateRequest $request, $id)
     {
        $product=Product::find($id); //lấy mẫu tin sau đó cập nhật
        $product->name=$request->name;
        $product->slug=Str::slug($product->name=$request->name,'-');
+       $product->category_id=$request->category_id;
+       $product->brand_id=$request->brand_id;
+       $product->slug=Str::slug($product->name=$request->name,'-');
+       $product->price=$request->price;
+       $product->detail=$request->detail;
        $product->metakey=$request->metakey;
        $product->metadesc=$request->metadesc;
        $product->status=$request->status;
+  
        $product->updated_at= date('Y-m-d H:i:s');
        $product->updated_by=1;
+        // Upload file
+        if ($request->has('image')) {
+          $path_dir = "public/image/product";
+          if (File::exists(($path_dir . $product->image))) {
+              File::delete(($path_dir . $product->image));
+          }
+
+          $file = $request->file('image');
+          $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
+          $filename = $product->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+          $file->move($path_dir, $filename);
+          $product->image = $filename;
+      }
+      //end upload file
       if( $product->save())
       {
         $link = Link::where([['type','=','product'],['table_id','=',$id]])->first();

@@ -81,6 +81,20 @@
                         <input type="file" value="{{old('image')}}" name="image" id='image' class="form-control" placeholder="Nhập tên danh mục">
                     </div>
                     <div class="mb-3">
+                      <label for="category_id">Loại sản phẩm</label>
+                      <select class="form-control" name="category_id" id="category_id">
+                          <option value="1">--Danh mục-- </option>
+                        {{!! $html_category_id!!}}  
+                      </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="brand_id">Thương hiệu</label>
+                    <select class="form-control" name="brand_id" id="brand_id">
+                        <option value="">--Thương hiệu-- </option>
+                      {{!! $html_brand_id!!}}  
+                    </select>
+                </div>
+                    <div class="mb-3">
                         <label for="status">Trạng thái</label>
                         <select class="form-control" name="status" id="status">
                             <option value="1">Xuất bản </option>

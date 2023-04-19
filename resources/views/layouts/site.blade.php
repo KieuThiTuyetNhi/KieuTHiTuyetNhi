@@ -110,10 +110,10 @@
       <!---MENU--->
       <x-main-menu/>
       <!---CONTENT-->
-      <section class="mymaincontent my-3">
+      
       @yield('content')
-      </section>
-      <div class="about" id="ABOUT">
+      
+      {{-- <div class="about" id="ABOUT">
         <h1>Áo Dài <span>Thiết Kế</span></h1>
         <div class="about_main">
           <div class="about_image">
@@ -133,7 +133,7 @@
           }
         </script>
       </div>
-      <!----FOOTER-->
+      <!----FOOTER--> --}}
       <footer class="text-center text-lg-start bg-light text-muted">
         <!-- Section: Social media -->
         <section

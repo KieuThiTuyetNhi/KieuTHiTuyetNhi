@@ -1,7 +1,7 @@
 @extends('layouts.admin')
-@section('title','Cập nhật  sản phẩm')
+@section('title','Cập nhật danh mục sản phẩm')
 @section('content')
-<form action="{{route('product.update',['product'=>$product->id])}}" method="post" enctype="multipart/form-data">
+<form action="{{route('slider.update',['slider'=>$slider->id])}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="content-wrapper">
@@ -10,12 +10,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Cập nhật  sản phẩm</h1>
+                <h1>Cập nhật danh mục sản phẩm</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
+                  <li class="breadcrumb-item active">Cập nhật danh mục</li>
                 </ol>
               </div>
             </div>
@@ -36,7 +36,7 @@
                 <button type="submit" class="btn btn-sm btn-success">
                <i class="fas fa-save"></i>Lưu[Cập nhật]
                 </button>
-                <a href="{{route('product.index')}}" class="btn btn-sm btn-info">
+                <a href="{{route('slider.index')}}" class="btn btn-sm btn-info">
                   <i class="fas fa-trash"></i>Quay về danh sách
                    </a>
               </div>
@@ -47,50 +47,41 @@
              <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <label for="name">Tên sản phẩm</label>
-                        <input type="text" value="{{old('name',$product->name)}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
+                        <label for="name">Tên slider</label>
+                        <input type="text" value="{{old('name',$slider->name)}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
                         @if ($errors->has('name'))
                            <div class="text-danger">
                           {{$errors->first('name')}}  
                           </div> 
                         @endif
-                        
                     </div>
                     <div class="mb-3">
-                        <label for="metakey">Từ khóa</label>
-                        <textarea name="metakey" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm" >
-                            {{old('metakey',$product->metakey)}}</textarea>
-                        @if ($errors->has('metakey'))
-                           <div class="text-danger">
-                            {{$errors->first('metakey')}}  
-                           </div> 
-                         @endif
-                    </div>
-                    <div class="mb-3">
-                        <label for="metadesc">Mô tả</label>
-                        <textarea name="metadesc" id="metadesc" class="form-control" placeholder=" Nhập mô tả" >{{old('metadesc',$product->metadesc)}}</textarea>
-                        @if ($errors->has('metadesc'))
-                           <div class="text-danger">
-                            {{$errors->first('metadesc')}}  
-                           </div> 
-                         @endif
-                    </div>
+                      <label for="link">Link</label>
+                      <input type="text" value="{{old('link',$slider->link)}}" name="link" id='link' class="form-control" placeholder="Nhập tên danh mục">
+                      @if ($errors->has('link'))
+                         <div class="text-danger">
+                        {{$errors->first('link')}}  
+                        </div> 
+                      @endif
+                  </div>
+                    
                 </div>
                 <div class="col-md-3">
-                  <div class="mb-3">
-                    <label for="category_id">Loại sản phẩm</label>
-                    <select class="form-control" name="category_id" id="category_id">
-                        <option value="1">--Danh mục-- </option>
-                      {{!! $html_category_id!!}}  
-                    </select>
-                </div>
-                <div class="mb-3">
-                  <label for="brand_id">Thương hiệu</label>
-                  <select class="form-control" name="brand_id" id="brand_id">
-                      <option value="">--Thương hiệu-- </option>
-                    {{!! $html_brand_id!!}}  
-                  </select>
-              </div>
+                  
+                    <div class="mb-3">
+                        <label for="sort_order">Vị trí sắp xếp</label>
+                        <select class="form-control" name="sort_order" id="sort_order">
+                            <option value="0">--Vị trí sắp xếp--</option>
+                            {!!$html_sort_order!!}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="posistion">Vị trí</label>
+                      <select class="form-control" name="posistion" id="posistion">
+                          <option value="slideshow">SLIDESHOW </option>
+                          <option value="footerslider">FOOTERSLIDER</option>                         
+                      </select>
+                  </div>
                     <div class="mb-3">
                         <label for="image">Ảnh đại diện</label>
                         <input type="file" value="{{old('image')}}" name="image" id='image' class="form-control" placeholder="Nhập tên danh mục">
