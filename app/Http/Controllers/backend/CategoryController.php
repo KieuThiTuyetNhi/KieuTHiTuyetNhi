@@ -142,9 +142,7 @@ class CategoryController extends Controller
            }
            if( $category->delete())
            {
-             $link = Link::where([['type','=','category'],['table_id','=',$id]])->first();
              
-             $link->delete();
              return redirect()->route('category.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }

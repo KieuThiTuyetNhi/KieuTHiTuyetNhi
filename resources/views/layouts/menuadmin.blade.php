@@ -61,6 +61,32 @@
               </li>
         </ul>
       </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+           Giao diện
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{route('slider.index')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Slider</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('menu.index')}}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>menu</p>
+            </a>
+          </li>
+          
+               
+        </ul>
+        
+      </li>
       <li class="nav-header">LABELS</li>
       <li class="nav-item">
         <a href="#" class="nav-link">

@@ -108,20 +108,18 @@ class ProductController extends Controller
       }
        return view('backend.product.edit',compact('product','html_category_id','html_brand_id'));
     }
-    public function update(productUpdateRequest $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
        $product=Product::find($id); //lấy mẫu tin sau đó cập nhật
        $product->name=$request->name;
        $product->slug=Str::slug($product->name=$request->name,'-');
        $product->category_id=$request->category_id;
        $product->brand_id=$request->brand_id;
-       $product->slug=Str::slug($product->name=$request->name,'-');
        $product->price=$request->price;
        $product->detail=$request->detail;
        $product->metakey=$request->metakey;
        $product->metadesc=$request->metadesc;
        $product->status=$request->status;
-  
        $product->updated_at= date('Y-m-d H:i:s');
        $product->updated_by=1;
         // Upload file
@@ -130,7 +128,6 @@ class ProductController extends Controller
           if (File::exists(($path_dir . $product->image))) {
               File::delete(($path_dir . $product->image));
           }
-
           $file = $request->file('image');
           $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin
           $filename = $product->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
@@ -151,6 +148,9 @@ class ProductController extends Controller
         'msg'=>'Thêm không thành công!']);
       }
     }
+      
+     
+
     public function destroy($id)
         {
            $product = Product::find($id);
@@ -161,9 +161,6 @@ class ProductController extends Controller
            }
            if( $product->delete())
            {
-             $link = Link::where([['type','=','product'],['table_id','=',$id]])->first();
-             
-             $link->delete();
              return redirect()->route('product.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }

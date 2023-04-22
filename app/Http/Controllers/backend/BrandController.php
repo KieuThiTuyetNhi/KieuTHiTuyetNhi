@@ -138,9 +138,6 @@ class BrandController extends Controller
            }
            if( $brand->delete())
            {
-             $link = Link::where([['type','=','brand'],['table_id','=',$id]])->first();
-             
-             $link->delete();
              return redirect()->route('brand.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }

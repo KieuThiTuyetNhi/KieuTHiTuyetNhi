@@ -133,9 +133,8 @@ class SliderController extends Controller
            }
            if( $slider->delete())
            {
-             $link = Link::where([['type','=','slider'],['table_id','=',$id]])->first();
+            
              
-             $link->delete();
              return redirect()->route('slider.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }
