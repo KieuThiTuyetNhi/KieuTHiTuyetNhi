@@ -16,8 +16,12 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-           'name'=>'required|min:2',
+           'name'=>'required',
+           'detail'=>'required',
            'metakey'=>'required',
+           'category_id'=>'required',
+           'brand_id'=>'required',
+           'price_buy'=>'required',
            'metadesc'=>'required'
         ];
     }
@@ -26,8 +30,11 @@ class ProductStoreRequest extends FormRequest
     {
         return [
            'name.required'=>'Bạn chưa nhập tên',
-           'name.min'=>'Tên viết ít nhất 2 kí tự',
            'metakey.required'=>'Chưa nhập từ khóa tìm kiếm',
+           'detail.required'=>'Chưa nhập chi tiết',
+           'category_id.required'=>'Chưa chon danh mục sản phẩm',
+           'brand_id.required'=>'Chưa chọn thương hiệu',
+           'price_buy.required'=>'Chưa cho giá bán',
            'metadesc.required'=>'Chưa nhập mô tả'
         ];
     }

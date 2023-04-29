@@ -3,6 +3,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Productimage;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Link;
@@ -42,40 +43,33 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
        $product= new Product; // tạo mới
-       $product->name=$request->name;
-       $product->slug=Str::slug($product->name=$request->name,'-');
        $product->category_id=$request->category_id;
        $product->brand_id=$request->brand_id;
+       $product->name=$request->name;
        $product->slug=Str::slug($product->name=$request->name,'-');
-       $product->price=$request->price;
+       $product->price_buy=$request->price_buy;
        $product->detail=$request->detail;
        $product->metakey=$request->metakey;
        $product->metadesc=$request->metadesc;
        $product->status=$request->status;
        $product->created_at= date('Y-m-d H:i:s');
        $product->created_by=1;
-       //Upload file
-       if ($request->has('image')) {
-        $path_dir = "public/image/product"; // nơi lưu trữ
-        $file = $request->file('image');
-        $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
-        $filename = $product->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
-        $file->move($path_dir, $filename);
-        $product->image = $filename;
-    }
-    // End upload 
-      if( $product->save())
-      {
-        $link = new Link();
-        $link->slug =$product->id;
-        $link->table_id=$product->id;
-        $link->type='product';
-        $link->save();
-        return redirect()->route('product.index')->with('message',['type'=>'success',
-        'msg'=>'Thêm mẫu tin thành công!']);
-      }
-      return redirect()->route('product.index')->with('message',['type'=>'danger',
-        'msg'=>'Thêm không thành công!']);
+       if($product->save()==1);
+       {
+        //luu hinh
+        if ($request->has('image')) {
+              $path_dir = "public/image/product"; // nơi lưu trữ
+              $file = $request->file('image');
+              $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+              $filename = $product->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+              $file->move($path_dir, $filename);
+              $product_image = new Productimage();
+              $product_image->product_id = $product->id;
+              $product_image->image = $filename;
+              $product_image->save();
+          }
+       }
+ 
     }
     public function show($id)
     {

@@ -10,7 +10,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Thêm sản phẩm</h1>
+                <h1>THÊM SẢN PHẨM</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -21,10 +21,8 @@
             </div>
           </div><!-- /.container-fluid -->
         </section>
-    
         <!-- Main content -->
         <section class="content">
-    
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
@@ -44,76 +42,65 @@
             </div>
             <div class="card-body">
               @includeIf('backend.message_alert')
-             <div class="row">
-                <div class="col-md-9">
-                    <div class="mb-3">
-                        <label for="name">Tên sản phẩm</label>
-                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
-                        @if ($errors->has('name'))
-                           <div class="text-danger">
-                          {{$errors->first('name')}}  
-                          </div> 
-                        @endif
-                        
-                    </div>
-                    <div class="mb-3">
-                        <label for="metakey">Từ khóa</label>
-                        <textarea name="metakey" id="metakey" class="form-control" placeholder="Từ khóa tìm kiếm" >{{old('metakey')}}</textarea>
-                        @if ($errors->has('metakey'))
-                           <div class="text-danger">
-                            {{$errors->first('metakey')}}  
-                           </div> 
-                         @endif
-                    </div>
-                    <div class="mb-3">
-                        <label for="metadesc">Mô tả</label>
-                        <textarea name="metadesc" id="metadesc" class="form-control" placeholder=" Nhập mô tả" >{{old('metadesc')}}</textarea>
-                        @if ($errors->has('metadesc'))
-                           <div class="text-danger">
-                            {{$errors->first('metadesc')}}  
-                           </div> 
-                         @endif
-                    </div>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="productinfo-tab" data-toggle="tab" data-target="#productinfo" type="button"
+                   role="tab" aria-controls="productinfo" aria-selected="true">Thông tin sản phẩm</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="productimage-tab" data-toggle="tab" data-target="#productimage" type="button"
+                   role="tab" aria-controls="productimage" aria-selected="false">Hình ảnh</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="productattribute-tab" data-toggle="tab" data-target="#productattribute" type="button"
+                   role="tab" aria-controls="productattribute" aria-selected="false">Thuộc tính</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="productsale-tab" data-toggle="tab" data-target="#productsale" type="button"
+                   role="tab" aria-controls="productsale" aria-selected="false">Khuyến mãi</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="productstore-tab" data-toggle="tab" data-target="#productstore" type="button"
+                   role="tab" aria-controls="productstore" aria-selected="false">Nhập sản phẩm</button>
+                </li>
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active border-right border-bottom border-lef p-3" id="productinfo" role="tabpanel" aria-labelledby="productinfo-tab">
+                 @includeIf('backend.product.tab_productinfo')
                 </div>
-                <div class="col-md-3">
-                    <div class="mb-3">
-                        <label for="image">Ảnh đại diện</label>
-                        <input type="file" value="{{old('image')}}" name="image" id='image' class="form-control" placeholder="Nhập tên danh mục">
-                    </div>
-                    <div class="mb-3">
-                      <label for="category_id">Loại sản phẩm</label>
-                      <select class="form-control" name="category_id" id="category_id">
-                          <option value="1">--Danh mục-- </option>
-                        {{!! $html_category_id!!}}  
-                      </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="brand_id">Thương hiệu</label>
-                    <select class="form-control" name="brand_id" id="brand_id">
-                        <option value="">--Thương hiệu-- </option>
-                      {{!! $html_brand_id!!}}  
-                    </select>
+                <div class="tab-pane fade border-right border-bottom border-lef p-3" id="productimage" role="tabpanel" aria-labelledby="productimage-tab">
+                  @includeIf('backend.product.tab_productimage')
                 </div>
-                    <div class="mb-3">
-                        <label for="status">Trạng thái</label>
-                        <select class="form-control" name="status" id="status">
-                            <option value="1">Xuất bản </option>
-                            <option value="2">Chưa xuất bản</option>
-                            
-                        </select>
-                    </div>
+                <div class="tab-pane fade border-right border-bottom border-lef p-3" id="productattribute" role="tabpanel" aria-labelledby="productattribute-tab">
+                  @includeIf('backend.product.tab_productattribute')
                 </div>
-               
-             </div>
+                <div class="tab-pane fade border-right border-bottom border-lef p-3" id="productsale" role="tabpanel" aria-labelledby="productsale-tab">
+                  @includeIf('backend.product.tab_productsale')
+                </div>               
+                <div class="tab-pane fade border-right border-bottom border-lef p-3" id="productstore" role="tabpanel" aria-labelledby="productstore-tab">
+                  @includeIf('backend.product.tab_productstore')
+                </div>
+              </div>
+             
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              Footer
+              <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6 text-right">
+                  <button type="submit" class="btn btn-sm btn-success">
+                 <i class="fas fa-save"></i>Lưu[Thêm]
+                  </button>
+                  <a href="{{route('product.index')}}" class="btn btn-sm btn-info">
+                    <i class="fas fa-trash"></i>Quay về danh sách
+                     </a>
+                </div>
+              </div> 
             </div>
             <!-- /.card-footer-->
           </div>
           <!-- /.card -->
-    
         </section>
         <!-- /.content -->
       </div>
