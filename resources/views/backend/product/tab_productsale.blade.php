@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
             <label for="date_end">Ngày kết thúc</label>
-            <input type="text" name="date_end" value="{{old('date_end')}}" id="date_end" class="form-control" 
+            <input type="date" name="date_end" value="{{old('date_end')}}" id="date_end" class="form-control" 
             placeholder="Nhập ngày kết thúc">
             @if ($errors->has('date_end'))
             <div class="text-danger">

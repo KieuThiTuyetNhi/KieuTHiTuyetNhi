@@ -3,7 +3,8 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Productimage;
+use App\Models\ProductImage;
+use App\Models\ProductSale;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Link;
@@ -58,15 +59,31 @@ class ProductController extends Controller
        {
         //luu hinh
         if ($request->has('image')) {
-              $path_dir = "public/image/product"; // nơi lưu trữ
-              $file = $request->file('image');
-              $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
-              $filename = $product->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
-              $file->move($path_dir, $filename);
-              $product_image = new Productimage();
-              $product_image->product_id = $product->id;
-              $product_image->image = $filename;
-              $product_image->save();
+              $path_dir = "public/images/product"; // nơi lưu trữ
+              $array_file = $request->file('image');
+              $i=1;
+              foreach($array_file as $file)
+              {
+                $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+                $filename = $product->slug ."-".$i. '.' . $extension; // lấy tên slug  + phần mở rộng 
+                $file->move($path_dir, $filename);
+                $product_image = new ProductImage();
+                $product_image->product_id = $product->id;
+                $product_image->image = $filename;
+                $product_image->save();
+                $i++;
+              }
+              
+          }
+          //khuyến mãi
+          if(isset($request->price_sale) && strlen($request->date_begin)&& strlen($request->date_end) )
+          {
+                $product_sale= new ProductSale();
+                $product_sale->product_id = $product->id;
+                $product_sale->price_sale = $request->price_sale;
+                $product_sale->date_begin = $request->date_begin;
+                $product_sale->date_end = $request->date_end;
+                $product_sale->save();
           }
        }
  
