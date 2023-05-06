@@ -61,7 +61,7 @@
               <td class="text-center">
                 <input type="checkbox">
               </td>
-              <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('public/image/product/' . $product->image) }}"
+              <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('images/product/' . $product->image) }}"
                 alt="{{ $product->image }}"></td>
               <td class="text-center align-middle">{{$product->name}}</td>
               <td class="text-center align-middle">{{$product->slug}}</td>

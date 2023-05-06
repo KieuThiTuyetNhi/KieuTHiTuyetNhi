@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductSale;
+use App\Models\ProductStore;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Link;
@@ -16,7 +17,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $list_product=Product::where('status','!=',0)->orderBy('created_at','desc') ->get();
+        $list_product=Product::rightjoin('KTTN_product_image','KTTN_product_image.product_id','=','KTTN_product.id')
+        -> where('KTTN_product.status','!=',0)->orderBy('KTTN_product.created_at','desc') ->get();
         return view('backend.product.index',compact('list_product'));
     }
     public function trash()
@@ -59,7 +61,7 @@ class ProductController extends Controller
        {
         //luu hinh
         if ($request->has('image')) {
-              $path_dir = "public/images/product"; // nơi lưu trữ
+              $path_dir = "images/product"; // nơi lưu trữ
               $array_file = $request->file('image');
               $i=1;
               foreach($array_file as $file)
@@ -85,7 +87,20 @@ class ProductController extends Controller
                 $product_sale->date_end = $request->date_end;
                 $product_sale->save();
           }
+          //Nhập kho
+          if(isset($request->price) && strlen($request->qty) )
+          {
+                $product_store= new ProductStore();
+                $product_store->product_id = $product->id;
+                $product_store->price = $request->price;
+                $product_store->qty = $request->qty;
+                $product_store->created_at= date('Y-m-d H:i:s');
+                $product_store->created_by=1;
+                $product_store->save();
+          }
        }
+       return redirect()->route('product.index')->with('message',['type'=>'success',
+       'msg'=>'Thêm mẫu tin thành công!']);
  
     }
     public function show($id)
