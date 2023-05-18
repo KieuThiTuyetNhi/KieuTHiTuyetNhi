@@ -75,22 +75,40 @@
                            </div> 
                          @endif
                     </div>
+                    <div class="mb-3">
+                      <label for="detail">Chi tiết sản phẩm</label>
+                      <textarea name="detail" id="detail" class="form-control" placeholder=" Nhập mô tả" >{{old('detail',$product->detail)}}</textarea>
+                      @if ($errors->has('detail'))
+                         <div class="text-danger">
+                          {{$errors->first('detail')}}  
+                         </div> 
+                       @endif
+                  </div>
                 </div>
                 <div class="col-md-3">
                   <div class="mb-3">
                     <label for="category_id">Loại sản phẩm</label>
                     <select class="form-control" name="category_id" id="category_id">
-                        <option value="1">--Danh mục-- </option>
+                        <option value="{{old('category_id',$product->category_id)}}">--Danh mục-- </option>
                       {{!! $html_category_id!!}}  
                     </select>
                 </div>
                 <div class="mb-3">
                   <label for="brand_id">Thương hiệu</label>
                   <select class="form-control" name="brand_id" id="brand_id">
-                      <option value="">--Thương hiệu-- </option>
+                      <option value="{{old('brand_id',$product->brand_id)}}">--Thương hiệu-- </option>
                     {{!! $html_brand_id!!}}  
                   </select>
               </div>
+              <div class="mb-3">
+                <label for="price_buy">Giá bán</label>
+                <input name="price_buy" id="price_buy"value="{{old('price_buy',$product->price_buy)}}" class="form-control" placeholder=" Nhập giá bán" >
+                @if ($errors->has('price_buy'))
+                   <div class="text-danger">
+                    {{$errors->first('price_buy')}}  
+                   </div> 
+                 @endif
+            </div>
                     <div class="mb-3">
                         <label for="image">Ảnh đại diện</label>
                         <input type="file" value="{{old('image')}}" name="image" id='image' class="form-control" placeholder="Nhập tên danh mục">

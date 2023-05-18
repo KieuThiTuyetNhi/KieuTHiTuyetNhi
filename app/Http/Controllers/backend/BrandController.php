@@ -57,7 +57,7 @@ class BrandController extends Controller
       if( $brand->save())
       {
         $link = new Link();
-        $link->slug =$brand->id;
+        $link->slug=Str::slug($brand->name=$request->name,'-' );
         $link->table_id=$brand->id;
         $link->type='brand';
         $link->save();

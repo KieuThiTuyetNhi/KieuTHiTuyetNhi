@@ -16,7 +16,7 @@
             </strong>
           </div>
           <div class="product_list-s py-3">
-            <div class="row">
+            <div class="row ">
               <x-home-product :category="$category"/>
             </div>
           </div>

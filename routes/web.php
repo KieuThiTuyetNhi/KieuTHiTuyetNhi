@@ -20,6 +20,15 @@ Route::get('lien-he',[LienheController::class,'index'])->name('site.index');
 Route::get('khach-hang',[LienheController::class,'index'])->name('site.index');
 Route::get('gio-hang',[LienheController::class,'index'])->name('site.index');
 
+//đangnhap
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'backend\DasboardController@index')->name('dashboard'); {
+        
+    }
+   });
+
+
+
 
 Route::prefix('admin')->group(function()
 {
@@ -113,6 +122,7 @@ Route::get('delete/{product}',[ProductController::class,'delete'])->name('produc
  });
 
 });
+
 
 
 Route::get('{slug}',[SiteController::class,'index'])->name('slug.home');

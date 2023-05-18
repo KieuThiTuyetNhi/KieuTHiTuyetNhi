@@ -47,11 +47,11 @@
              <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <label for="name">Tên danh mục</label>
-                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
-                        @if ($errors->has('name'))
+                        <label for="title">Tên danh mục</label>
+                        <input type="text" value="{{old('title')}}" name="title" id='title' class="form-control" placeholder="Nhập tên danh mục">
+                        @if ($errors->has('title'))
                            <div class="text-danger">
-                          {{$errors->first('name')}}  
+                          {{$errors->first('title')}}  
                           </div> 
                         @endif
                         
@@ -77,10 +77,10 @@
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="parent_id">Danh mục cha</label>
-                        <select class="form-control" name="parent_id" id="parent_id">
+                        <label for="top_id">Danh mục cha</label>
+                        <select class="form-control" name="top_id" id="top_id">
                             <option value="0">--Cấp cha--</option>
-                            {!!$html_parent_id!!}
+                            {!!$html_top_id!!}
                         </select>
                     </div>
                     <div class="mb-3">

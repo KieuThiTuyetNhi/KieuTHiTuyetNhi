@@ -36,8 +36,7 @@ class CategoryController extends Controller
     {
        $category= new Category; // tạo mới
        $category->name=$request->name;
-       $category->slug=Str::slug($category->name=$request->name,'-'
-    );
+       $category->slug=Str::slug($category->name=$request->name,'-');
        $category->metakey=$request->metakey;
        $category->metadesc=$request->metadesc;
        $category->parent_id=$request->parent_id;
@@ -58,7 +57,7 @@ class CategoryController extends Controller
       if( $category->save())
       {
         $link = new Link();
-        $link->slug =$category->id;
+        $link->slug=Str::slug($category->name=$request->name,'-' );
         $link->table_id=$category->id;
         $link->type='category';
         $link->save();

@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('title','Cập nhật thương hiệu sản phẩm')
 @section('content')
+
 <form action="{{route('brand.update',['brand'=>$brand->id])}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @csrf

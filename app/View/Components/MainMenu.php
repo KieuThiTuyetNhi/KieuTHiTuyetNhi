@@ -15,7 +15,7 @@ class MainMenu extends Component
     
     public function render()
     {
-        $list_menu= Menu::where([['position','=','mainmenu'],['status','=',1]])->get();
+        $list_menu= Menu::where([['position','=','mainmenu'],['status','=',1],['parent_id','=',0]])->get();
         return view('components.main-menu',compact('list_menu'));
     }
 }

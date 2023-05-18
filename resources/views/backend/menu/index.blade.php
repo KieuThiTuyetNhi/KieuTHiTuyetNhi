@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 @section('title','Quản lý menu')
 @section('content')
+@section('header')
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+@section('footer')
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+      let table = new DataTable('#myTable');
+    </script>
+@endsection
 <form action="{{route('menu.store')}}" method="post">
     @csrf
 <div class="content-wrapper">
@@ -179,7 +188,7 @@
             </div>
             <div class="col-md-9">
                 @includeIf('backend.message_alert')
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="myTable" >
                  <thead>
                    <tr>
                      <th style="width:10px" class="text-center">#</th>

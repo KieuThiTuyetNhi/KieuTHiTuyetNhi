@@ -37,7 +37,7 @@ class HomeProduct extends Component
                 }
             }
         }
-       $list_pro = Product::whereIn("category_id",$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->get();
+       $list_pro = Product::whereIn("category_id",$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->take(4)->get();
     return view('components.home-product',compact('list_pro'));
     }
 }

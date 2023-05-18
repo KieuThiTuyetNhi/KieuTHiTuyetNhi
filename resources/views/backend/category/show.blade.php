@@ -45,17 +45,17 @@
             </div> 
             </div>
             <div class="card-body">
-            <table class="table">
+            <table class="table table-bordered">
                 <tr>
                     <td>Tên trường</td>
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>id</td>
+                    <td>Mã</td>
                     <td>{{$category->id}}</td>
                 </tr>
                 <tr>
-                    <td>name</td>
+                    <td>Tên danh mục</td>
                     <td>{{$category->name}}</td>
                 </tr>
                 <tr>

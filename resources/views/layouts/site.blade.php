@@ -17,13 +17,13 @@
         <div class="container py-3">
           <div class="row">
             <div class="col-md-3">
-              <img src="images/nhi.jpg" class="img-fruit" alt="" />
+              <img style ="width:150px; height:120px;"src="images/logo.jpg" class="img-fruit" alt="" />
             </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
+            <div class="col-md-4 mt-5 ">
+              <div class="input-group mb-3 ">
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control "
                   placeholder="Từ khóa tìm kiếm"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
@@ -33,7 +33,7 @@
                 ></span>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-5">
               <div class="row">
                 <div class="col">
                   <div class="row">
@@ -42,7 +42,7 @@
                         <i class="fa-solid fa-phone"></i>
                       </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-9 ">
                       tư vấn hỗ trợ <br />
                       <strong>0352219491</strong>
                     </div>
@@ -63,7 +63,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 mt-5">
               <div class="row">
                 <div class="col">
                   <a href="#" class="position-relative">

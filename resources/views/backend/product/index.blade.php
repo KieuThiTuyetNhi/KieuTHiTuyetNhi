@@ -1,7 +1,15 @@
 @extends('layouts.admin')
 @section('title','Tất cả  sản phẩm')
 @section('content')
-
+@section('header')
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+@section('footer')
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+      let table = new DataTable('#myTable');
+    </script>
+@endsection
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -43,7 +51,7 @@
         </div>
         <div class="card-body">
           @includeIf('backend.message_alert')
-         <table class="table table-bordered">
+         <table class="table table-bordered" id="myTable">
           <thead>
             <tr>
               <th style="width:10px" class="text-center">#</th>
@@ -57,12 +65,20 @@
           </thead>
           <tbody>
             @foreach ($list_product as $product)
+            @php
+            $arr_image=$product->producthinh;
+            $hinh = 'hinh.png';
+            if(count($arr_image)>0)
+            {
+            $hinh=$arr_image[0]['image'];
+            }
+            @endphp
             <tr>
               <td class="text-center">
                 <input type="checkbox">
               </td>
-              <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('images/product/' . $product->image) }}"
-                alt="{{ $product->image }}"></td>
+              <td class="text-center" ><img class="img-fluid" src="{{ asset('images/product/' . $hinh) }}"
+                alt="{{ $hinh }}"></td>
               <td class="text-center align-middle">{{$product->name}}</td>
               <td class="text-center align-middle">{{$product->slug}}</td>
               <td class="text-center align-middle">{{$product->created_at}}</td>

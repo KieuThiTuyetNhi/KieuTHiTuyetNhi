@@ -45,24 +45,36 @@
             </div> 
             </div>
             <div class="card-body">
-            <table class="table">
+            <table class="table table-bordered">
                 <tr>
                     <td>Tên trường</td>
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>id</td>
+                    <td>Số thứ tự</td>
                     <td>{{$product->id}}</td>
                 </tr>
                 <tr>
-                    <td>name</td>
+                    <td>Tên sản phẩm</td>
                     <td>{{$product->name}}</td>
                 </tr>
                 <tr>
-                    <td>slug</td>
+                    <td>Tên link</td>
                     <td>{{$product->slug}}</td>
                 </tr>
-                
+                <tr>
+                  <td>Giá bán</td>
+                  <td>{{$product->price_buy}}</td>
+              </tr>
+              <tr>
+                <td>Chi tiết sản phẩm</td>
+                <td>{{$product->detail}}</td>
+            </tr>
+            <tr>
+              <td>Ngày đăng</td>
+              <td>{{$product->create_id}}</td>
+          </tr>
+         
             </table>
             </div>
             <!-- /.card-body -->

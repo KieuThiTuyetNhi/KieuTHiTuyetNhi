@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Link;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Post;
 class SiteController extends Controller
 {
@@ -21,8 +22,10 @@ class SiteController extends Controller
          $link = Link::where('slug','=',$slug)->first();
          if($link==null)
          {
-            $product = Product::where([['status','=','1'],['slug','=',$slug]])->first();
-            if($product !=null)
+            $product = Product::join('KTTN_brand','KTTN_brand.id','=','KTTN_product.brand_id')
+                ->select('KTTN_product.*', 'KTTN_brand.name as brandname')
+                ->where([['KTTN_product.status','=','1'],['KTTN_product.slug','=',$slug]]) ->first();
+                if($product != null)
             {
                 return $this->product_detail($product);
 
@@ -101,13 +104,15 @@ class SiteController extends Controller
             }
         }
         //var_dump( $arrcatid);
-     $list_pro = Product::whereIn("category_id",$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->get();
+     $list_pro = Product::whereIn("category_id",$arrcatid)->where('status','=','1')->orderBy('created_at','desc')->paginate(4);
         return view('frontend.product-category',compact('row_category','list_pro'));
     
  }
  public function product_brand ($slug)
  {
-        return view('frontend.product-brand');
+    $row_brand=Brand::where([['status','=','1'],['slug','=',$slug]])->first();
+    $list_pro = Product::where([['status','=','1'],['brand_id','=',$row_brand->id]])->orderBy('created_at','desc')->paginate(4);
+        return view('frontend.product-brand',compact('row_brand','list_pro'));
     
  }
  public function post_topic ($slug)

@@ -23,22 +23,22 @@ class TopicController extends Controller
     public function create()
     {
        $list_topic=Topic::where('status','!=',0)->get();
-       $html_parent_id ='';
+       $html_top_id ='';
        $html_sort_order ='';
        foreach ( $list_topic as $item)
        {
-        $html_parent_id .='<option value="'.$item->id.'">'.$item->name.'</option>';
-        $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->name.'</option>';
+        $html_top_id .='<option value="'.$item->id.'">'.$item->title.'</option>';
+        $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->title.'</option>';
        }
-       return view('backend.topic.create',compact('html_parent_id','html_sort_order'));
+       return view('backend.topic.create',compact('html_top_id','html_sort_order'));
     }
     public function store(TopicStoreRequest $request)
     {
        $topic= new topic; // tạo mới
-       $topic->name=$request->name;
-       $topic->slug=Str::slug($topic->name=$request->name,'-'
+       $topic->title=$request->title;
+       $topic->slug=Str::slug($topic->title=$request->title,'-'
     );
-       $topic->parent_id=$request->parent_id;
+       $topic->top_id=$request->top_id;
        $topic->sort_order=$request->sort_order;
        $topic->image=$request->image;
        $topic->metakey=$request->metakey;
@@ -90,24 +90,24 @@ class TopicController extends Controller
     {
         $topic =Topic::find($id);
         $list_topic=Topic::where('status','!=',0)->get();
-        $html_parent_id ='';
+        $html_top_id ='';
         $html_sort_order ='';
         foreach ( $list_topic as $item)
         {
-         $html_parent_id .='<option value="'.$item->id.'">'.$item->name.'</option>';
-         $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->name.'</option>';
+         $html_top_id .='<option value="'.$item->id.'">'.$item->title.'</option>';
+         $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->title.'</option>';
  
         }
-        return view('backend.topic.edit',compact('topic','html_parent_id','html_sort_order'));
+        return view('backend.topic.edit',compact('topic','html_top_id','html_sort_order'));
     }
     public function update(TopicUpdateRequest $request, $id)
     {
        $topic=Topic::find($id); //lấy mẫu tin sau đó cập nhật
-       $topic->name=$request->name;
-       $topic->slug=Str::slug($topic->name=$request->name,'-');
+       $topic->title=$request->title;
+       $topic->slug=Str::slug($topic->title=$request->title,'-');
        $topic->metakey=$request->metakey;
        $topic->metadesc=$request->metadesc;
-       $topic->parent_id=$request->parent_id;
+       $topic->top_id=$request->top_id;
        $topic->sort_order=$request->sort_order;
        $topic->status=$request->status;
        $topic->updated_at= date('Y-m-d H:i:s');
@@ -127,9 +127,9 @@ class TopicController extends Controller
       //end upload file
       if( $topic->save())
       {
-        $link = Link::where([['type','=','topic'],['table_id','=',$id]])->first();
-        $link->slug =$topic->slug;
-        $link->save();
+        // $link = Link::where([['type','=','topic'],['table_id','=',$id]])->first();
+        // $link->slug =$topic->slug;
+        // $link->save();
         return redirect()->route('topic.index')->with('message',['type'=>'success',
         'msg'=>'Thêm mẫu tin thành công!']);
       }

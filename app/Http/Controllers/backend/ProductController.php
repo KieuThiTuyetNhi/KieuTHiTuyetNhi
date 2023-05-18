@@ -17,8 +17,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $list_product=Product::rightjoin('KTTN_product_image','KTTN_product_image.product_id','=','KTTN_product.id')
-        -> where('KTTN_product.status','!=',0)->orderBy('KTTN_product.created_at','desc') ->get();
+        $list_product=Product::where('KTTN_product.status','!=',0)->orderBy('KTTN_product.created_at','desc') ->get();
         return view('backend.product.index',compact('list_product'));
     }
     public function trash()
@@ -98,6 +97,15 @@ class ProductController extends Controller
                 $product_store->created_by=1;
                 $product_store->save();
           }
+          //Thuộc tính
+          if(isset($request->namevalue))
+          {
+                $product_value= new ProductStore();
+                $product_value->product_id = $product->id;
+                $product_value->namevalue = $request->namevalue;
+                $product_value->value = $request->giatri;
+                $product_value->save();
+          }
        }
        return redirect()->route('product.index')->with('message',['type'=>'success',
        'msg'=>'Thêm mẫu tin thành công!']);
@@ -117,7 +125,7 @@ class ProductController extends Controller
       }
     }
     public function edit($id)
-    {
+     {
         $product =Product::find($id);
         $list_product=Product::where('status','!=',0)->get();
       $list_category=Category::where('status','!=',0)->get();
@@ -141,7 +149,7 @@ class ProductController extends Controller
        $product->slug=Str::slug($product->name=$request->name,'-');
        $product->category_id=$request->category_id;
        $product->brand_id=$request->brand_id;
-       $product->price=$request->price;
+       $product->price_buy=$request->price_buy;
        $product->detail=$request->detail;
        $product->metakey=$request->metakey;
        $product->metadesc=$request->metadesc;
@@ -163,9 +171,7 @@ class ProductController extends Controller
       //end upload file
       if( $product->save())
       {
-        $link = Link::where([['type','=','product'],['table_id','=',$id]])->first();
-        $link->slug =$product->slug;
-        $link->save();
+        
         return redirect()->route('product.index')->with('message',['type'=>'success',
         'msg'=>'Thêm mẫu tin thành công!']);
       }

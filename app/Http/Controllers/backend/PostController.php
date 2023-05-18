@@ -3,6 +3,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Topic;
 use App\Models\Link;
 use Illuminate\Support\Str;
 use App\Http\Requests\PostStoreRequest;  
@@ -22,39 +23,45 @@ class PostController extends Controller
     }
     public function create()
     {
+       $list_top=Topic::where('status','!=',0)->get();
        $list_post=Post::where('status','!=',0)->get();
-      
-       foreach ( $list_post as $item)
+       $html_top_id='';
+       foreach ( $list_top as $item)
        {
+        $html_top_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
        }
-       return view('backend.post.create');
+       return view('backend.post.create',compact('html_top_id'));
     }
     public function store(PostStoreRequest $request)
     {
        $post= new post; // tạo mới
-       $post->name=$request->name;
-       $post->slug=Str::slug($post->name=$request->name,'-'
-    );
-       $post->category_id=$request->category_id;
-       $post->brand_id=$request->brand_id;
-       $post->slug=Str::slug($post->name=$request->name,'-');
-       $post->price=$request->price;
+       $post->title=$request->title;
+       $post->slug=Str::slug($post->title=$request->title,'-' );
        $post->detail=$request->detail;
+       $post->top_id=$request->top_id;
        $post->metakey=$request->metakey;
        $post->metadesc=$request->metadesc;
+       $post->type='post';
        $post->status=$request->status;
        $post->created_at= date('Y-m-d H:i:s');
        $post->created_by=1;
-      if( $post->save())
-      {
-        $link = new Link();
-        $link->slug =$post->id;
-        $link->table_id=$post->id;
-        $link->type='post';
-        $link->save();
+       //Upload file
+       if ($request->has('image')) {
+        $path_dir = "images/post"; // nơi lưu trữ
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension(); // lấy phần mở rộng của tập tin 
+        $filename = $post->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
+        $file->move($path_dir, $filename);
+        $post->image = $filename;
+       $post->save();
+      
         return redirect()->route('post.index')->with('message',['type'=>'success',
         'msg'=>'Thêm mẫu tin thành công!']);
-      }
+    }
+    // End upload 
+    
+      
+ 
       return redirect()->route('post.index')->with('message',['type'=>'danger',
         'msg'=>'Thêm không thành công!']);
     }
@@ -74,28 +81,32 @@ class PostController extends Controller
     public function edit($id)
     {
         $post =Post::find($id);
+        $list_top=Topic::where('status','!=',0)->get();
         $list_post=Post::where('status','!=',0)->get();
-        foreach ( $list_post as $item)
-        {
- 
-        }
-        return view('backend.post.edit',compact('post'));
+        $html_top_id='';
+       foreach ( $list_top as $item)
+       {
+        $html_top_id .= '<option value="' . $item->id . '">' . $item->title . '</option>';
+       }
+       
+        return view('backend.post.edit',compact('post','html_top_id'));
     }
     public function update(PostUpdateRequest $request, $id)
     {
        $post=Post::find($id); //lấy mẫu tin sau đó cập nhật
-       $post->name=$request->name;
-       $post->slug=Str::slug($post->name=$request->name,'-');
+       $post->title=$request->title;
+       $post->slug=Str::slug($post->title=$request->title,'-');
        $post->metakey=$request->metakey;
        $post->metadesc=$request->metadesc;
+       $post->top_id=$request->top_id;
        $post->status=$request->status;
        $post->updated_at= date('Y-m-d H:i:s');
        $post->updated_by=1;
       if( $post->save())
       {
-        $link = Link::where([['type','=','post'],['table_id','=',$id]])->first();
-        $link->slug =$post->slug;
-        $link->save();
+        // $link = Link::where([['type','=','post'],['table_id','=',$id]])->first();
+        // $link->slug=Str::slug($post->title=$request->title,'-');
+        // $link->save();
         return redirect()->route('post.index')->with('message',['type'=>'success',
         'msg'=>'Thêm mẫu tin thành công!']);
       }
@@ -114,9 +125,7 @@ class PostController extends Controller
            }
            if( $post->delete())
            {
-             $link = Link::where([['type','=','post'],['table_id','=',$id]])->first();
-             
-             $link->delete();
+           
              return redirect()->route('post.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }

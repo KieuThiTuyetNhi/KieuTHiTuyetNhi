@@ -4,17 +4,12 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 use App\Models\Category;
-
-
 class NavRight extends Component
 {
-   
     public function __construct()
     {
         //
     }
-
-  
     public function render()
     {
         $data1 =[

@@ -45,24 +45,27 @@
             </div> 
             </div>
             <div class="card-body">
-            <table class="table">
+            <table class="table table-bordered">
                 <tr>
                     <td>Tên trường</td>
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>id</td>
+                    <td>Mã thương hiệu</td>
                     <td>{{$brand->id}}</td>
                 </tr>
                 <tr>
-                    <td>name</td>
+                    <td>Tên thương hiệu</td>
                     <td>{{$brand->name}}</td>
                 </tr>
                 <tr>
                     <td>slug</td>
                     <td>{{$brand->slug}}</td>
                 </tr>
-                
+                <tr>
+                  <td>Ngày đăng</td>
+                  <td>{{$brand->create_id}}</td>
+              </tr>
             </table>
             </div>
             <!-- /.card-body -->

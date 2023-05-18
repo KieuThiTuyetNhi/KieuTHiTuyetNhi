@@ -1,7 +1,7 @@
 <section class="mymaincontent my-3">
   <div class="col-md-12">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div class="container">
           <!---SLIDER-->
           <div class="slider">
@@ -82,11 +82,16 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <h4>DANH MỤC SẢN PHẨM</h4>
+      <div class="col-md-2 ">
+        <h5>DANH MỤC SẢN PHẨM</h5>
         <x-nav-right/>
+
+        <h5>THƯƠNG HIỆU</h5>
+       <x-nav-brand/>
+
         
       </div>
+      
     </div>
   </div>
 </section>
