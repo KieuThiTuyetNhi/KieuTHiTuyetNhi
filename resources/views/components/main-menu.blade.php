@@ -1,4 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-danger navbar-dark" >
+<style>
+  .nav-link{
+    color: white !important; 
+  }
+</style>
+<nav class="navbar navbar-expand-lg bg-danger navbar-dark mainmenu" >
  <div class="container">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

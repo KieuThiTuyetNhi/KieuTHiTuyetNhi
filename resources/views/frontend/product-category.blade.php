@@ -27,7 +27,9 @@
                   <img class="img-fluid" src="{{ asset('images/product/' . $hinh) }}"
                   alt="{{ $hinh }}">
                     <h4 class="fs-6 text-secondary mt-2">
-                        {{$pro->name}}
+                      <a style="text-decoration: none; color:black;" href="{{route('slug.home',['slug'=>$pro->slug])}}">
+
+                        {{$pro->name }}
                     </h4>
                     <h3>{{$pro->price}}</h3>
                     <div class="product-star">

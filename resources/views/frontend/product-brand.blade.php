@@ -27,6 +27,8 @@
                   <img class="img-fluid" src="{{ asset('images/product/' . $hinh) }}"
                   alt="{{ $hinh }}">
                     <h4 class="fs-6 text-secondary mt-2">
+                      <a style="text-decoration: none; color:black;" href="{{route('slug.home',['slug'=>$pro->slug])}}">
+
                         {{$pro->name}}
                     </h4>
                     <h3>{{$pro->price}}</h3>
@@ -37,7 +39,11 @@
                       <i class="fa-regular fa-star-half-stroke"></i>
                       <i class="fa-regular fa-star"></i>
                     </div>
-                    <a href="#" class="btn">Thêm vào giỏ hàng</a>
+                    <div class="btn  " >
+                      <i style="color: black;" class="fa-solid fa-cart-plus "></i>
+                      <a style="text-decoration: none; color:black;" href="#" >Thêm vào giỏ hàng</a>
+                
+                    </div>
                   </div>
                 @endforeach
             </div>

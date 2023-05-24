@@ -89,9 +89,9 @@
       </li>
       <li class="nav-header">LABELS</li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a href="{{route("admin.logout")}}" class="nav-link">
           <i class="nav-icon far fa-circle text-danger"></i>
-          <p class="text">Important</p>
+          <p class="text">Đăng xuất</p>
         </a>
       </li>
       <li class="nav-item">

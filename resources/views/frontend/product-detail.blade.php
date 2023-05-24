@@ -18,9 +18,9 @@
       alt="{{ $hinh }}">
           </div>
           <div class="col-md-6">
-           <h1 class="mt-4">{{$product->name}}</h1>
+           <h3 class="mt-4">{{$product->name}}</h3>
            <h2>{{$product->price}}</h2>
-           <h3>{{$product->brandname}}</h3>
+           <h4>{{$product->brandname}}</h4>
            <div class="product-star">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -31,9 +31,10 @@
           <h4>Chi tiết sản phẩm</h4> <br>
 
           {{$product->detail}}<br>
-         
-          <a  href="{{route('slug.home',['slug'=>$product->slug])}}" class="btn mt-3">Thêm vào giỏ hàng</a>
-
+          <div class="btn mt-3">
+          <i style="color: black;" class="fa-solid fa-cart-plus "></i>
+          <a style="text-decoration: none; color:black;  href="{{route('slug.home',['slug'=>$product->slug])}}"  >Thêm vào giỏ hàng</a>
+        </div>
           </div>
           
           </div>

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\SiteController;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\DangnhapController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\ProductController;
 use App\Http\Controllers\backend\BrandController;
@@ -12,27 +14,32 @@ use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\TopicController;
 use App\Http\Controllers\backend\MenuController;
 use App\Http\Controllers\backend\SliderController;
+//use App\Http\Controllers\backend\AuthController;
 
 
 
 Route::get('/',[SiteController::class,'index'])->name('site.home');
 Route::get('lien-he',[LienheController::class,'index'])->name('site.index');
 Route::get('khach-hang',[LienheController::class,'index'])->name('site.index');
-Route::get('gio-hang',[LienheController::class,'index'])->name('site.index');
+Route::get('gio-hang',[CartController::class,'index']);
+Route::get('/Add-Cart/{id}',[CartController::class,'AddCart']);
 
 //đangnhap
-Route::prefix('admin')->group(function () {
-    Route::get('/', 'backend\DasboardController@index')->name('dashboard'); {
-        
-    }
-   });
+route::get('login', [DashboardController::class, 'getlogin'])->name('login');
+Route::post('login', [DashboardController::class,'postlogin'])->name('postlogin');
+
+//Đangky
+Route::get('dang-ky',[DangnhapController::class,'dangky'])->name('login.dangky');
+Route::post('dang-ky',[DangnhapController::class,'xulydangky'])->name('login.xulidangky');
 
 
 
 
-Route::prefix('admin')->group(function()
+
+route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () 
 {
    Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
+   route::get('login', [DashboardController::class, 'logout'])->name('admin.logout');
    Route::resource('brand',BrandController::class);
    //Category
    Route::resource('category',CategoryController::class);
