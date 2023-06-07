@@ -52,8 +52,9 @@
           <thead>
             <tr>
               <th style="width:20px" class="text-center">#</th>
-              <th>Tên danh mục</th>
-              <th>Slug</th>
+              <th>Tên liên hệ</th>
+              <th>Số điện thoại</th>
+              <th>Email</th>
               <th style="width:160px" class="text-center">Ngày đăng</th>
               <th style="width:200px" class="text-center">Chức năng</th>
               <th style="width:20px" class="text-center">id</th>
@@ -66,7 +67,8 @@
                 <input type="checkbox">
               </td>
               <td>{{$contact->name}}</td>
-              <td>{{$contact->slug}}</td>
+              <td>{{$contact->phone}}</td>
+              <td>{{$contact->email}}</td>
               <td class="text-center">{{$contact->created_at}}</td>
               <td class="text-center">
                 

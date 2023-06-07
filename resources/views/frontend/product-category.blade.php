@@ -39,7 +39,7 @@
                       <i class="fa-regular fa-star-half-stroke"></i>
                       <i class="fa-regular fa-star"></i>
                     </div>
-                    <a href="#" class="btn">Thêm vào giỏ hàng</a>
+                    <a href="#" class="btn" onclick="AddCart({{$pro->id}})">Thêm vào giỏ hàng</a>
                   </div>
                 @endforeach
             </div>

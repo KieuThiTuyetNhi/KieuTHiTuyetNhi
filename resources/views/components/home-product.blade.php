@@ -26,7 +26,7 @@
     </div>
     <div class="btn  " >
       <i class="fa-solid fa-cart-plus"></i>
-      <a style="text-decoration: none; color:black;" href="{{url('/Add-Cart/'.$pro->id)}}" >Thêm vào giỏ hàng</a>
+      <a style="text-decoration: none; color:black;"  onclick="AddCart({{$pro->id}})" href="javascript:" >Thêm vào giỏ hàng</a>
 
     </div>
   </div>

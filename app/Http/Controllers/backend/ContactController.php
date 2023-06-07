@@ -110,9 +110,9 @@ class ContactController extends Controller
            }
            if( $contact->delete())
            {
-             $link = Link::where([['type','=','contact'],['table_id','=',$id]])->first();
+            //  $link = Link::where([['type','=','contact'],['table_id','=',$id]])->first();
              
-             $link->delete();
+            //  $link->delete();
              return redirect()->route('contact.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }

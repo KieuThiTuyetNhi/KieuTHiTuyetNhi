@@ -3,6 +3,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
+use App\Models\Topic;
 use App\Models\Link;
 use Illuminate\Support\Str;
 use App\Http\Requests\PageStoreRequest;  
@@ -22,26 +23,28 @@ class PageController extends Controller
     }
     public function create()
     {
+      $list_top=Topic::where('status','!=',0)->get();
        $list_page=Page::where('status','!=',0)->get();
-       $html_parent_id ='';
+       $html_top_id ='';
        $html_sort_order ='';
-       foreach ( $list_page as $item)
+       foreach ( $list_top as $item)
        {
-        $html_parent_id .='<option value="'.$item->id.'">'.$item->name.'</option>';
-        $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->name.'</option>';
+        $html_top_id .='<option value="'.$item->id.'">'.$item->title.'</option>';
+        $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->title.'</option>';
        }
-       return view('backend.page.create',compact('html_parent_id','html_sort_order'));
+       return view('backend.page.create',compact('html_top_id','html_sort_order'));
     }
-    public function store(PageStoreRequest $request)
+    public function store(Request $request)
     {
        $page= new page; // tạo mới
-       $page->name=$request->name;
-       $page->slug=Str::slug($page->name=$request->name,'-'
+       $page->title=$request->title;
+       $page->slug=Str::slug($page->title=$request->title,'-'
     );
        $page->metakey=$request->metakey;
        $page->metadesc=$request->metadesc;
-       $page->parent_id=$request->parent_id;
-       $page->sort_order=$request->sort_order;
+       $page->detail=$request->detail;
+       $page->top_id=$request->top_id;
+      //  $page->sort_order=$request->sort_order;
        $page->status=$request->status;
        $page->created_at= date('Y-m-d H:i:s');
        $page->created_by=1;
@@ -53,21 +56,28 @@ class PageController extends Controller
         $filename = $page->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
         $file->move($path_dir, $filename);
         $page->image = $filename;
-    }
-    // End upload 
-      if( $page->save())
-      {
-        $link = new Link();
-        $link->slug =$page->id;
-        $link->table_id=$page->id;
-        $link->type='page';
-        $link->save();
+        $page->save();
         return redirect()->route('page.index')->with('message',['type'=>'success',
         'msg'=>'Thêm mẫu tin thành công!']);
-      }
-      return redirect()->route('page.index')->with('message',['type'=>'danger',
-        'msg'=>'Thêm không thành công!']);
+       // var_dump($page);
     }
+    // // End upload 
+    //   if( $page->save())
+    //   {
+    //     $link = new Link();
+    //     $link->slug =$page->id;
+    //     $link->table_id=$page->id;
+    //     $link->type='page';
+    //     $link->save();
+      
+    //     
+    //   }
+      // return redirect()->route('page.index')->with('message',['type'=>'danger',
+      //   'msg'=>'Thêm không thành công!']);
+    }
+
+
+
     public function show($id)
     {
         $page = Page::find($id);
@@ -84,25 +94,27 @@ class PageController extends Controller
     public function edit($id)
     {
         $page =Page::find($id);
+        $list_top=Topic::where('status','!=',0)->get();
         $list_page=Page::where('status','!=',0)->get();
-        $html_parent_id ='';
+        $html_top_id ='';
         $html_sort_order ='';
-        foreach ( $list_page as $item)
+        foreach ( $list_top as $item)
         {
-         $html_parent_id .='<option value="'.$item->id.'">'.$item->name.'</option>';
-         $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->name.'</option>';
+         $html_top_id .='<option value="'.$item->id.'">'.$item->title.'</option>';
+         $html_sort_order .='<option value="'.$item->sort_order.'">Sau'.$item->title.'</option>';
         }
-        return view('backend.page.edit',compact('page','html_parent_id','html_sort_order'));
+        return view('backend.page.edit',compact('page','html_top_id','html_sort_order'));
     }
-    public function update(PageUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
        $page=Page::find($id); //lấy mẫu tin sau đó cập nhật
-       $page->name=$request->name;
-       $page->slug=Str::slug($page->name=$request->name,'-');
+       $page->title=$request->title;
+       $page->top_id=$request->top_id;
+       $page->detail=$request->detail;
+       $page->slug=Str::slug($page->title=$request->title,'-');
        $page->metakey=$request->metakey;
        $page->metadesc=$request->metadesc;
-       $page->parent_id=$request->parent_id;
-       $page->sort_order=$request->sort_order;
+      //  $page->sort_order=$request->sort_order;
        $page->status=$request->status;
        $page->updated_at= date('Y-m-d H:i:s');
        $page->updated_by=1;
@@ -117,20 +129,12 @@ class PageController extends Controller
           $filename = $page->slug . '.' . $extension; // lấy tên slug  + phần mở rộng 
           $file->move($path_dir, $filename);
           $page->image = $filename;
+          $page->save();
+          return redirect()->route('page.index')->with('message',['type'=>'success',
+          'msg'=>'Thêm mẫu tin thành công!']);
       }
       //end upload file
-      if( $page->save())
-      {
-        $link = Link::where([['type','=','page'],['table_id','=',$id]])->first();
-        $link->slug =$page->slug;
-        $link->save();
-        return redirect()->route('page.index')->with('message',['type'=>'success',
-        'msg'=>'Thêm mẫu tin thành công!']);
-      }
-      else{
-        return redirect()->route('page.index')->with('message',['type'=>'danger',
-        'msg'=>'Thêm không thành công!']);
-      }
+      
     }
     public function destroy($id)
         {

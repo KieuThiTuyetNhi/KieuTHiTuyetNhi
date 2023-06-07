@@ -27,7 +27,7 @@ class LoginAdminMiddleware
         }
         else
         {
-            // return redirect->route('login');
+            return redirect('login');
         }
        }
        else{

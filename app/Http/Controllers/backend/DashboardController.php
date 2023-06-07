@@ -34,8 +34,9 @@ class DashboardController extends Controller
                   $data=['username'=>$username,'password'=>$password];
                 }     
                 if(Auth::attempt($data)){
+                    //echo 'vào';
                     // echo bcrypt($password);
-                  return redirect()->route('admin.dashboard')->with('message', ['type' => 'success', 'msg' => 'Đăng nhập tài khoản thành công!']);
+                  return redirect()->route('admin.dashboard');
                 }
                 else{
                     // echo "thất bại";

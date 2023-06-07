@@ -1,41 +1,43 @@
-@if ($newCart != null)
-<p>ok</p>
-    
-@endif
+@if (Session::has("Cart") != null)
+   <table class="table table-bordered" id="myTable">
+  
+    <tbody>
+        @foreach (Session::get('Cart')->products as $item)
+        <tr>
+            <td></td>
+            <td style="font-size: 20px">
+                <span>{{$item['productInfo']->name}}</span> <br>
+                <span>{{$item['quanty']}} x {{number_format($item['productInfo']->price_buy)}}</span>
+            </td>
+            <td class="si-close">
 
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h1
-                class="modal-title fs-5"
-                id="exampleModalLabel"
-            >
-                Modal title
-            </h1>
-            <button
+                <button
+                style="font-size: 20px"
                 type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
+                class="btn-close" data-id="{{$item['productInfo']->id}}"
             ></button>
-        </div>
-        <div class="modal-body">
-            ...
-        </div>
-        <div class="modal-footer">
-            <button
-                type="button"
-                class="btn btn-secondary"
-                
-            >
-               Xem giỏ hàng
-            </button>
-            <button
-                type="button"
-                class="btn btn-primary"
-            >
-                Thanh toán
-            </button>
-        </div>
-    </div>
-</div>
+            </td>
+
+        </tr>
+        @endforeach
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                <h6 style="width:80px;">
+                    Tổng tiền
+                </h6>
+            </th>
+            <td>
+               <input hidden  id="total-quanty-cart" type="number" value="{{Session::get('Cart')->totalQuanty}}">
+                {{number_format(Session::get('Cart')->totalPrice,0)}}
+            </td>
+        </tr>
+     
+    </tfoot>
+  </table>
+  
+  
+
+@endif

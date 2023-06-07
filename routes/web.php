@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\SiteController;
+use App\Http\Controllers\frontend\DathangController;
+use App\Http\Controllers\frontend\LienheController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\DangnhapController;
 use App\Http\Controllers\backend\DashboardController;
@@ -13,34 +15,52 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\PageController;
 use App\Http\Controllers\backend\TopicController;
 use App\Http\Controllers\backend\MenuController;
+use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\backend\CustomerController;
 use App\Http\Controllers\backend\SliderController;
-//use App\Http\Controllers\backend\AuthController;
+use App\Http\Controllers\frontend\LoginController;
+// use App\Http\Controllers\backend\AuthController;
 
 
 
 Route::get('/',[SiteController::class,'index'])->name('site.home');
 Route::get('lien-he',[LienheController::class,'index'])->name('site.index');
+Route::post('lien-he',[LienheController::class,'xuly'])->name('contact.xuly');
 Route::get('khach-hang',[LienheController::class,'index'])->name('site.index');
 Route::get('gio-hang',[CartController::class,'index']);
 Route::get('/Add-Cart/{id}',[CartController::class,'AddCart']);
+Route::get("/tim-kiem", [SiteController::class, 'timkiem'])->name('site.timkiem');
+Route::get('/Delete-Item-Cart/{id}',[CartController::class,'DeleteItemCart']);
+Route::get('/List-Carts',[CartController::class,'ViewListCart'])->name('site.giohang');
+Route::get('/Delete-Item-List-Cart/{id}',[CartController::class,'DeleteItemListCart']);
+Route::get('/Save-Item-List-Cart/{id}/{quanty}',[CartController::class,'SaveItemListCart']);
+//thanh toan
+
+Route::get('thanh-toan',[DathangController::class,'index'])->name('dathang.index');
+Route::get('dat-hang-thanh-cong',[DathangController::class,'dathang'])->name('order.dathang');
 
 //đangnhap
-route::get('login', [DashboardController::class, 'getlogin'])->name('login');
+route::get('login', [DashboardController::class, 'getlogin'])->name('admin.login');
 Route::post('login', [DashboardController::class,'postlogin'])->name('postlogin');
 
 //Đangky
 Route::get('dang-ky',[DangnhapController::class,'dangky'])->name('login.dangky');
 Route::post('dang-ky',[DangnhapController::class,'xulydangky'])->name('login.xulidangky');
+//dang nhap
+Route::get('dang-nhap', [LoginController::class, 'login'])->name ('site.login');
+Route::post('dang-nhap', [LoginController::class, 'postlogin'])->name ('site.postlogin');
+Route::get('logout', [LoginController::class, 'logout'])->name ('site.logout');
 
 
 
 
 
-route::group(['prefix'=>'admin','middleware'=>'LoginAdmin'] ,function () 
+// ,'middleware'=>'LoginAdmin'
+route::group(['prefix'=>'admin' ,'middleware'=>'LoginAdmin'] ,function () 
 {
    Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
    route::get('login', [DashboardController::class, 'logout'])->name('admin.logout');
-   Route::resource('brand',BrandController::class);
+   
    //Category
    Route::resource('category',CategoryController::class);
    Route::get('category_trash',[CategoryController::class,'trash'])->name('category.trash');
@@ -128,6 +148,24 @@ Route::get('delete/{product}',[ProductController::class,'delete'])->name('produc
  Route::get('delete/{slider}',[SliderController::class,'delete'])->name('slider.delete');
  });
 
+ //user
+ Route::resource('user',UserController::class);
+ Route::get('user_trash',[UserController::class,'trash'])->name('user.trash');
+ Route::prefix('user')->group(function(){
+ Route::get('status/{user}',[UserController::class,'status'])->name('user.status');
+ Route::get('restore/{user}',[UserController::class,'restore'])->name('user.restore');
+ Route::get('destroy/{user}',[UserController::class,'destroy'])->name('user.destroy');
+ Route::get('delete/{user}',[UserController::class,'delete'])->name('user.delete');
+ });
+ //customer
+ Route::resource('customer',CustomerController::class);
+ Route::get('customer_trash',[CustomerController::class,'trash'])->name('customer.trash');
+ Route::prefix('customer')->group(function(){
+ Route::get('status/{customer}',[CustomerController::class,'status'])->name('customer.status');
+ Route::get('restore/{customer}',[CustomerController::class,'restore'])->name('customer.restore');
+ Route::get('destroy/{customer}',[CustomerController::class,'destroy'])->name('customer.destroy');
+ Route::get('delete/{customer}',[CustomerController::class,'delete'])->name('customer.delete');
+ });
 });
 
 

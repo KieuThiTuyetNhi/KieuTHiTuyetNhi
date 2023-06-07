@@ -140,4 +140,11 @@ class SiteController extends Controller
         return view('frontend.error_404');
     
  }
+ public function timkiem(Request $req)
+    {
+            $product = Product::where('KTTN_product.name', 'like', '%' . $req->search . '%')
+            ->orWhere('price_buy', $req->search)
+            ->get();
+        return view('frontend.timkiem', compact('product'));    
+    }
 }

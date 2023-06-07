@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+     
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,26 +24,30 @@
             <div class="container py-3">
                 <div class="row">
                     <div class="col-md-3">
-                        <img
+                        <a href="{{route('site.home')}}"><img
                             style="width: 150px; height: 120px"
                             src="images/logo.jpg"
                             class="img-fruit"
                             alt=""
-                        />
+                        /></a>
                     </div>
                     <div class="col-md-4 mt-5">
-                        <div class="input-group mb-3">
-                            <input
+                        <form action="{{route('site.timkiem')}}" method="GET">
+                            {{ csrf_field()}}
+                            <div class="input-group mb-4">
+                              <input
                                 type="text"
+                                name="search"
                                 class="form-control"
                                 placeholder="Từ khóa tìm kiếm"
-                                aria-label="Recipient's username"
+                                aria-label="Từ khóa tìm kiếm"
                                 aria-describedby="basic-addon2"
-                            />
-                            <span class="input-group-text" id="basic-addon2">
-                                <i class="fa-solid fa-magnifying-glass"> </i
-                            ></span>
-                        </div>
+                              />
+                              <button class="input-group-text" id="basic-addon2" 
+                                ><i class="fa-solid fa-magnifying-glass"></i
+                              ></button>
+                            </div>
+                        </form>
                     </div>
                     <div class="col-md-3 mt-5">
                         <div class="row">
@@ -63,12 +68,18 @@
                                 <div class="row">
                                     <div class="col-3">
                                         <div class="fs-3 text-danger">
-                                            <i class="fa-solid fa-user"></i>
+                                            <a href="{{route('site.login')}}"><i class="fa-solid fa-user text-danger"></i></a>
                                         </div>
                                     </div>
                                     <div class="col-9">
-                                        Xin chào <br />
-                                        <strong>Đăng nhập</strong>
+                                        @if (Auth::check())
+                                        <span> {{Auth::user()->name;}} </span>
+                                        <strong class="my_size"><a style="text-decoration: none; color:black;" href="{{route('site.logout')}}">Đăng xuất</a></strong>
+                                        @else
+                          
+                                        <strong  class="my_size">Đăng nhập</strong>
+                                        @endif
+                          
                                     </div>
                                 </div>
                             </div>
@@ -93,68 +104,86 @@
                             </div>
                             <div class="col">
                                 <a href="#" class="position-relative">
-                                    <span class="fs-3">
-                                        <i class="fa-solid fa-bag-shopping" data-bs-toggle="modal"
+                                    <span class="fs-3"><i class="fa-solid fa-bag-shopping" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal"></i>
+                                        @if (Session::has("Cart") != null)
+                                        <span id="total-quanty-show"
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                         {{Session::get("Cart")->totalQuanty}}
+                                        </span>
+                                    @else
+                                        <span id="total-quanty-show"
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                         0
+                                        </span>
+                                       @endif
                                         <!-- Button trigger modal -->
-                                    
-
                                         <!-- Modal -->
-                                        <div
-                                            class="modal fade"
-                                            id="exampleModal"
-                                            tabindex="-1"
-                                            aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true"
-                                        >
-                                         <div id="change-item-cart">
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1
-                                                            class="modal-title fs-5"
-                                                            id="exampleModalLabel"
-                                                        >
-                                                            Modal title
-                                                        </h1>
-                                                        <button
-                                                            type="button"
-                                                            class="btn-close"
-                                                            data-bs-dismiss="modal"
-                                                            aria-label="Close"
-                                                        ></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        ...
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button
-                                                            type="button"
-                                                            class="btn btn-secondary"
-                                                            
-                                                        >
-                                                           Xem giỏ hàng
-                                                        </button>
-                                                        <button
-                                                            type="button"
-                                                            class="btn btn-primary"
-                                                        >
-                                                            Thanh toán
-                                                        </button>
-                                                    </div>
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Giỏ hàng</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
+                                                <div class="modal-body">
+                                                  <div id="change-item-cart">
+                                                    @if (Session::has("Cart") != null)
+                                                    <table class="table table-bordered" id="myTable">
+                                                   
+                                                     <tbody>
+                                                         @foreach (Session::get('Cart')->products as $item)
+                                                         <tr>
+                                                             <td></td>
+                                                             <td style="font-size: 20px">
+                                                                 <span>{{$item['productInfo']->name}}</span> <br>
+                                                                 <span>{{$item['quanty']}} x {{number_format($item['productInfo']->price_buy)}}</span>
+                                                             </td>
+                                                             <td class="si-close">
+                                                 
+                                                                 <button
+                                                                 style="font-size: 20px"
+                                                                 type="button"
+                                                                 class="btn-close" data-id="{{$item['productInfo']->id}}"
+                                                             ></button>
+                                                             </td>
+                                                 
+                                                         </tr>
+                                                         @endforeach
+                                                 
+                                                     </tbody>
+                                                     <tfoot>
+                                                         <tr>
+                                                             <th>
+                                                                 <h6>
+                                                                     Tổng tiền
+                                                                 </h6>
+                                                             </th>
+                                                             <td>
+                                                                <input hidden  id="total-quanty-cart" type="number" value="{{Session::get('Cart')->totalQuanty}}">
+                                                                 {{number_format(Session::get('Cart')->totalPrice,0)}}
+                                                             </td>
+                                                         </tr>
+                                                      
+                                                     </tfoot>
+                                                   </table>
+                                                 @endif
+                                                  </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button  type="button" class="btn btn-secondary" data-dismiss="modal"><a href= "{{route("site.giohang")}}">Xem giỏ hàng </a></button>
+                                                    <button type="button" class="btn btn-primary"> Thanh toán</button>
+                                                </div>
+                                              </div>
+                                              
                                             </div>
+                                          </div>
                                          </div>
                                         </div>
                                     </span>
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                                    >
-                                    0
-                                    </span>
                                 </a>
                             </div>
-                            <div class="col">
+                            {{-- <div class="col">
                                 <a href="#" class="position-relative">
                                     <span class="fs-3">
                                         <i class="fa-solid fa-power-off"></i>
@@ -165,7 +194,7 @@
                                         0
                                     </span>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -175,29 +204,7 @@
         <x-main-menu />
         <!---CONTENT-->
 
-        @yield('content') {{--
-        <div class="about" id="ABOUT">
-            <h1>Áo Dài <span>Thiết Kế</span></h1>
-            <div class="about_main">
-                <div class="about_image">
-                    <div class="about_small_image">
-                        <img src="images/about1.jpg" alt="" class="img-fluid" />
-                        <img src="images/about2.jpg" alt="" class="img-fluid" />
-                        <img src="images/about3.jpg" alt="" class="img-fluid" />
-                        <img src="images/about4.jpg" alt="" class="img-fluid" />
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="about_btn">Về</a>
-            <script>
-                function functio(small) {
-                    var full = document.getElementById("imagebox");
-                    full.src = small.src;
-                }
-            </script>
-        </div>
-        <!----FOOTER-->
-        --}}
+        @yield('content') 
         <footer class="text-center text-lg-start bg-light text-muted">
             <!-- Section: Social media -->
             <section
@@ -352,24 +359,60 @@
             <!-- Section: Links  -->
         </footer>
         <!-- Footer -->
-        <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('js/imagesloaded.pkgd.min.js')}}"></script>
+
+
+        <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
         <script src="{{asset('js/jquery.countdown.min.js')}}"></script>
         <script src="{{asset('js/jquery.dd.min.js')}}"></script>
         <script src="{{asset('js/jquery.nice-select.min.js')}}"></script>
         <script src="{{asset('js/jquery.slicknav.js')}}"></script>
         <script src="{{asset('js/jquery.zoom.min.js')}}"></script>
         <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
+        {{-- <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>  --}}
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/imagesloaded.pkgd.min.js')}}"></script>
         <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('js/main.js')}}"></script>
 
-        // javaScript
+
+
+        <!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+        
         <script>
             function AddCart(id){
-            console.log(id);
+                $.ajax({
+                    url:'Add-Cart/'+id,
+                    type:'GET',
+                }).done(function(response){ 
+                    RenderCart(response);
+                alertify.success('Thêm thành công');
+            });
             }
+            $("#change-item-cart").on("click",".si-close .btn-close " ,function(){
+                   $.ajax({
+                    url:' Delete-Item-Cart/'+$(this).data("id"),
+                    type:'GET',
+                }).done(function(response){ 
+                    RenderCart(response);
+                alertify.success('Đã xóa thành công');
+            });
+        });
+        function RenderCart(response){
+            $("#change-item-cart").empty();
+            $("#change-item-cart").html(response);
+            $("#total-quanty-show").text($("#total-quanty-cart").val());
+            
+        }
         </script>
         <script src="{{
                 asset('bootstrap/js/bootstrap.bundle.min.js')

@@ -19,7 +19,7 @@
           </div>
           <div class="col-md-6">
            <h3 class="mt-4">{{$product->name}}</h3>
-           <h2>{{$product->price}}</h2>
+           <h2>{{number_format($product->price_buy,0)}} đ</h2>
            <h4>{{$product->brandname}}</h4>
            <div class="product-star">
             <i class="fa-solid fa-star"></i>
@@ -28,12 +28,14 @@
             <i class="fa-regular fa-star-half-stroke"></i>
             <i class="fa-regular fa-star"></i>
           </div>
-          <h4>Chi tiết sản phẩm</h4> <br>
+     
+
+          <h4>Chi tiết sản</h4> <br>
 
           {{$product->detail}}<br>
           <div class="btn mt-3">
           <i style="color: black;" class="fa-solid fa-cart-plus "></i>
-          <a style="text-decoration: none; color:black;  href="{{route('slug.home',['slug'=>$product->slug])}}"  >Thêm vào giỏ hàng</a>
+          <a style="text-decoration: none; color:black;"   href="{{route('slug.home',['slug'=>$product->slug])}}"  >Thêm vào giỏ hàng</a>
         </div>
           </div>
           

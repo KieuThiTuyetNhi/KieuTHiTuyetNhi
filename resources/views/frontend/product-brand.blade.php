@@ -41,7 +41,7 @@
                     </div>
                     <div class="btn  " >
                       <i style="color: black;" class="fa-solid fa-cart-plus "></i>
-                      <a style="text-decoration: none; color:black;" href="#" >Thêm vào giỏ hàng</a>
+                      <a style="text-decoration: none; color:black;" onclick="AddCart({{$pro->id}})" href="#" >Thêm vào giỏ hàng</a>
                 
                     </div>
                   </div>
