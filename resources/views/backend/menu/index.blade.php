@@ -62,7 +62,7 @@
                       <div class="card-header" id="headingCategory">
                         <h2 class="mb-0">
                           <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseCategory" aria-expanded="false" aria-controls="collapseCategory">
-                            Danh mục sản phẩm
+                            DANH MỤC SẢN PHẨM
                           </button>
                         </h2>
                       </div>
@@ -87,7 +87,7 @@
                         <div class="card-header" id="headingBrand">
                           <h2 class="mb-0">
                             <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseBrand" aria-expanded="false" aria-controls="collapseBrand">
-                              Thương hiệu sản phẩm
+                              THƯƠNG HIỆU SẢN PHẨM
                             </button>
                           </h2>
                         </div>
@@ -112,7 +112,7 @@
                     <div class="card-header" id="headingTopic">
                       <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTopic" aria-expanded="false" aria-controls="collapseTopic">
-                      Chủ đề bài viết
+                      CHỦ ĐỀ BÀI VIẾT
                         </button>
                       </h2>
                     </div>
@@ -138,7 +138,7 @@
                 <div class="card-header" id="headingPage">
                   <h2 class="mb-0">
                     <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapsePage" aria-expanded="false" aria-controls="collapsePage">
-                      Trang đơn
+                     TRANG ĐƠN
                     </button>
                   </h2>
                 </div>
@@ -164,7 +164,7 @@
             <div class="card-header" id="headingCustome">
               <h2 class="mb-0">
                 <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseCustome" aria-expanded="false" aria-controls="collapseCustome">
-                 Tùy liên kết
+                 TÙY LIÊN KẾT
                 </button>
               </h2>
             </div>
@@ -218,8 +218,8 @@
                 @endif
                  <a href="{{route('menu.edit',['menu'=>$menu->id])}}" class="btn btn-sm btn-info">
                   <i class="fas fa-edit"></i></a>
-                 <a href="{{route('menu.show',['menu'=>$menu->id])}}" class="btn btn-sm btn-primary">
-                  <i class="fas fa-eye"></i></a>
+                 {{-- <a href="{{route('menu.show',['menu'=>$menu->id])}}" class="btn btn-sm btn-primary">
+                  <i class="fas fa-eye"></i></a> --}}
                  <a href="{{route('menu.delete',['menu'=>$menu->id])}}" class="btn btn-sm btn-danger">
                   <i class="fas fa-trash"></i></a>
               </td>

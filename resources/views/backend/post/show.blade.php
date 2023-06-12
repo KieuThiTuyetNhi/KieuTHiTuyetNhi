@@ -9,7 +9,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Chi tiết bài viết</h1>
+                <h1>CHI TIẾT BÀI VIẾT</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('post.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 
@@ -51,12 +51,12 @@
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>Mã thương hiệu</td>
+                    <td>Mã bài viết</td>
                     <td>{{$post->id}}</td>
                 </tr>
                 <tr>
-                    <td>Tên thương hiệu</td>
-                    <td>{{$post->name}}</td>
+                    <td>Tên bài viết</td>
+                    <td>{{$post->title}}</td>
                 </tr>
                 <tr>
                     <td>slug</td>
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                   <td>Ngày đăng</td>
-                  <td>{{$post->create_id}}</td>
+                  <td>{{$post->created_at}}</td>
               </tr>
             </table>
             </div>

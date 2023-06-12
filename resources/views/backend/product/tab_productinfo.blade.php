@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="detail">Chi tiết</label>
-            <textarea name="detail" id="detail"  class="form-control" 
+            <textarea name="detail" id="txt_detail"  class="form-control" 
             placeholder="Chi tiết sản phẩm">{{old('detail')}}</textarea>
             @if ($errors->has('detail'))
             <div class="text-danger">

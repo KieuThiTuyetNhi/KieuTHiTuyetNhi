@@ -9,12 +9,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Chi tiết bài viết</h1>
+                <h1>CHI TIẾT TRANG ĐƠN</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Chi tiết bài viết</li>
+                  <li class="breadcrumb-item active">Chi tiết trang đơn</li>
                 </ol>
               </div>
             </div>
@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('page.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 
@@ -51,20 +51,24 @@
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>Mã thương hiệu</td>
+                    <td>Mã trang đơn</td>
                     <td>{{$page->id}}</td>
                 </tr>
                 <tr>
-                    <td>Tên thương hiệu</td>
-                    <td>{{$page->name}}</td>
+                    <td>Tên trang đơn</td>
+                    <td>{{$page->title}}</td>
                 </tr>
                 <tr>
                     <td>slug</td>
                     <td>{{$page->slug}}</td>
                 </tr>
                 <tr>
+                  <td>Chi tiết</td>
+                  <td>{{$page->detail}}</td>
+              </tr>
+                <tr>
                   <td>Ngày đăng</td>
-                  <td>{{$page->create_id}}</td>
+                  <td>{{$page->created_at}}</td>
               </tr>
             </table>
             </div>

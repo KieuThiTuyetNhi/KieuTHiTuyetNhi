@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('user.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 

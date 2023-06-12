@@ -18,6 +18,8 @@ use App\Http\Controllers\backend\MenuController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\CustomerController;
 use App\Http\Controllers\backend\SliderController;
+use App\Http\Controllers\backend\OrderController;
+
 use App\Http\Controllers\frontend\LoginController;
 // use App\Http\Controllers\backend\AuthController;
 
@@ -50,7 +52,8 @@ Route::post('dang-ky',[DangnhapController::class,'xulydangky'])->name('login.xul
 Route::get('dang-nhap', [LoginController::class, 'login'])->name ('site.login');
 Route::post('dang-nhap', [LoginController::class, 'postlogin'])->name ('site.postlogin');
 Route::get('logout', [LoginController::class, 'logout'])->name ('site.logout');
-
+//tat ca san pham
+Route::get('san-pham', [SiteController::class, 'product'])->name ('site.product');
 
 
 
@@ -165,6 +168,14 @@ Route::get('delete/{product}',[ProductController::class,'delete'])->name('produc
  Route::get('restore/{customer}',[CustomerController::class,'restore'])->name('customer.restore');
  Route::get('destroy/{customer}',[CustomerController::class,'destroy'])->name('customer.destroy');
  Route::get('delete/{customer}',[CustomerController::class,'delete'])->name('customer.delete');
+ });//order
+ Route::resource('order',OrderController::class);
+ Route::get('order_trash',[OrderController::class,'trash'])->name('order.trash');
+ Route::prefix('order')->group(function(){
+ Route::get('status/{order}',[OrderController::class,'status'])->name('order.status');
+ Route::get('restore/{order}',[OrderController::class,'restore'])->name('order.restore');
+ Route::get('destroy/{order}',[OrderController::class,'destroy'])->name('order.destroy');
+ Route::get('delete/{order}',[OrderController::class,'delete'])->name('order.delete');
  });
 });
 

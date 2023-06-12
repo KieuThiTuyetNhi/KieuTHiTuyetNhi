@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Thêm liên hệ')
+@section('title','Thêm slider')
 @section('content')
 <form action="{{route('slider.store')}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -10,12 +10,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Thêm danh mục sản phẩm</h1>
+                <h1>THÊM SLIDER</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Thêm danh mục</li>
+                  <li class="breadcrumb-item active">Thêm slider</li>
                 </ol>
               </div>
             </div>
@@ -37,7 +37,7 @@
                <i class="fas fa-save"></i>Lưu[Thêm]
                 </button>
                 <a href="{{route('slider.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i>Quay về danh sách
+                  <i class="fas fa-undo"></i>Quay về danh sách
                    </a>
               </div>
             </div> 
@@ -47,8 +47,8 @@
              <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <label for="name">Tên danh mục</label>
-                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
+                        <label for="name">Tên slider</label>
+                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên slider">
                         @if ($errors->has('name'))
                            <div class="text-danger">
                           {{$errors->first('name')}}  
@@ -56,7 +56,7 @@
                         @endif
                     </div>
                     <div class="mb-3">
-                      <label for="link">Tên danh mục</label>
+                      <label for="link">Tên slider</label>
                       <input type="text" value="{{old('link')}}" name="link" id='link' class="form-control" placeholder="Nhập tên danh mục">
                       @if ($errors->has('link'))
                          <div class="text-danger">

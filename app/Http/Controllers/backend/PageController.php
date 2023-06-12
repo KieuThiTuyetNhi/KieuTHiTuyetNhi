@@ -146,9 +146,9 @@ class PageController extends Controller
            }
            if( $page->delete())
            {
-             $link = Link::where([['type','=','page'],['table_id','=',$id]])->first();
+            //  $link = Link::where([['type','=','page'],['table_id','=',$id]])->first();
              
-             $link->delete();
+            //  $link->delete();
              return redirect()->route('page.trash')->with('message',['type'=>'success',
              'msg'=>'Xóa mẫu tin thành công!']);
            }

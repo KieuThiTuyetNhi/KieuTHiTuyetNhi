@@ -9,7 +9,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Chi tiết chủ đề</h1>
+                <h1>CHI TIẾT CHỦ ĐỀ</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('topic.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 
@@ -51,12 +51,12 @@
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>id</td>
+                    <td>Mã</td>
                     <td>{{$topic->id}}</td>
                 </tr>
                 <tr>
-                    <td>name</td>
-                    <td>{{$topic->name}}</td>
+                    <td>Tên chủ đề</td>
+                    <td>{{$topic->title}}</td>
                 </tr>
                 <tr>
                     <td>slug</td>

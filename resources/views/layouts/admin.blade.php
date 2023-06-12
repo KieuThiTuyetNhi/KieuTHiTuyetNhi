@@ -58,7 +58,7 @@
             <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">KieuThiTuyetNhi</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
           </div>
         </div>
         <!-- Sidebar Menu -->
@@ -72,7 +72,7 @@
       <div class="float-right d-none d-sm-block">
         <b>Version</b> 3.2.0
       </div>
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+      <strong> KieuThiTuyetNhi</strong>
     </footer>
   
     <!-- Control Sidebar -->
@@ -82,6 +82,21 @@
     <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+  <script>
+    ClassicEditor
+      .create( document.querySelector( '#txt_detail' ), {
+        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+      } )
+      .then( editor => {
+        window.editor = editor;
+      } )
+      .catch( err => {
+        console.error( err.stack );
+      } );
+  </script>
+
 
 <!-- jQuery -->
 <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>

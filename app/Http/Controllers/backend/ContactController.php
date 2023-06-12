@@ -83,6 +83,7 @@ class ContactController extends Controller
     {
        $contact=Contact::find($id); //lấy mẫu tin sau đó cập nhật
        $contact->name=$request->name;
+
        $contact->slug=Str::slug($contact->name=$request->name,'-');
        $contact->status=$request->status;
        $contact->updated_at= date('Y-m-d H:i:s');

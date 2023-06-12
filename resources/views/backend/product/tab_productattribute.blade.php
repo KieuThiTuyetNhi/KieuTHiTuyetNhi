@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="metakesssssy">Mô tả</label>
-            <textarea name="metakesssy" id="metsssakey"  class="form-control" 
+            <textarea name="metakesssy" id="txt_detail"  class="form-control" 
             placeholder="Từ khóa tìm kiếm">{{old('metakey')}}</textarea>
             @if ($errors->has('metakey'))
             <div class="text-danger">

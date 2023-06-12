@@ -16,12 +16,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Thùng rác slider</h1>
+            <h1>SỌT RÁC</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-              <li class="breadcrumb-item active">Thùng rác slider</li>
+              <li class="breadcrumb-item active">Sọt rác slider</li>
             </ol>
           </div>
         </div>
@@ -41,7 +41,7 @@
           </div>
           <div class="col-md-6 text-right">
             <a href="{{route('slider.index')}}" class="btn btn-sm btn-info">
-                <i class="fas fa-trash"></i>Quay về danh sách
+                <i class="fas fa-undo"></i>Quay về danh sách
             </a>
           </div>
         </div> 
@@ -52,7 +52,7 @@
           <thead>
             <tr>
               <th style="width:20px" class="text-center">#</th>
-              <th>Tên danh mục</th>
+              <th>Tên slider</th>
               <th>Slug</th>
               <th style="width:160px" class="text-center">Ngày đăng</th>
               <th style="width:200px" class="text-center">Chức năng</th>

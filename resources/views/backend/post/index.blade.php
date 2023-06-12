@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả bài viết</h1>
+            <h1>TẤT CẢ BÀI VIẾT</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -56,7 +56,7 @@
             <tr>
               <th style="width:10px" class="text-center">#</th>
               <th style="width:90px">Hình</th>
-              <th style="width:100px">Chủ đề bài viết</th>
+              <th style="width:100px">Tên bài viết</th>
               <th style="width:100px" >Slug</th>
               <th style="width:150px"  class="text-center">Ngày đăng</th>
               <th style="width:180px" class="text-center">Chức năng</th>
@@ -71,7 +71,7 @@
               </td>
               <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('images/post/' . $post->image) }}"
                 alt="{{ $post->image }}"></td>
-              <td class="text-center align-middle">{{$post->top_id}}</td>
+              <td class="text-center align-middle">{{$post->title}}</td>
               <td class="text-center align-middle">{{$post->slug}}</td>
               <td class="text-center align-middle">{{$post->created_at}}</td>
               <td class="text-center align-middle">

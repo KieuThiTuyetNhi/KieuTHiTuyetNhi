@@ -10,7 +10,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Thêm thương hiệu sản phẩm</h1>
+                <h1>THÊM THƯƠNG HIỆU SẢN PHẨM</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -37,7 +37,7 @@
                <i class="fas fa-save"></i>Lưu[Thêm]
                 </button>
                 <a href="{{route('brand.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i>Quay về danh sách
+                  <i class="fas fa-undo"></i>Quay về danh sách
                    </a>
               </div>
             </div> 
@@ -48,7 +48,7 @@
                 <div class="col-md-9">
                     <div class="mb-3">
                         <label for="name">Tên thương hiệu</label>
-                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên danh mục">
+                        <input type="text" value="{{old('name')}}" name="name" id='name' class="form-control" placeholder="Nhập tên thương hiệu">
                         @if ($errors->has('name'))
                            <div class="text-danger">
                           {{$errors->first('name')}}  
@@ -67,7 +67,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="metadesc">Mô tả</label>
-                        <textarea name="metadesc" id="metadesc" class="form-control" placeholder=" Nhập mô tả" >{{old('metadesc')}}</textarea>
+                        <textarea name="metadesc" id="txt_detail" class="form-control" placeholder=" Nhập mô tả" >{{old('metadesc')}}</textarea>
                         @if ($errors->has('metadesc'))
                            <div class="text-danger">
                             {{$errors->first('metadesc')}}  

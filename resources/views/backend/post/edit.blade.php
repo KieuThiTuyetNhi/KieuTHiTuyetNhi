@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Cập nhật thương hiệu sản phẩm')
+@section('title','Cập nhật bài viết')
 @section('content')
 
 <form action="{{route('post.update',['post'=>$post->id])}}" method="post" enctype="multipart/form-data">
@@ -11,12 +11,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Cập nhật thương hiệu sản phẩm</h1>
+                <h1>CẬP NHẬT BÀI VIẾT</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Cập nhật thương hiệu</li>
+                  <li class="breadcrumb-item active">Cập nhật bài viết</li>
                 </ol>
               </div>
             </div>
@@ -38,7 +38,7 @@
                <i class="fas fa-save"></i>Lưu[Cập nhật]
                 </button>
                 <a href="{{route('post.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i>Quay về danh sách
+                  <i class="fas fa-undo"></i>Quay về danh sách
                    </a>
               </div>
             </div> 
@@ -48,8 +48,8 @@
              <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <label for="title">Tên thương hiệu</label>
-                        <input type="text" value="{{old('title',$post->title)}}" name="title" id='title' class="form-control" placeholder="Nhập tên danh mục">
+                        <label for="title">Tên bài viết</label>
+                        <input type="text" value="{{old('title',$post->title)}}" name="title" id='title' class="form-control" placeholder="Nhập tên bài viết">
                         @if ($errors->has('title'))
                            <div class="text-danger">
                           {{$errors->first('title')}}  

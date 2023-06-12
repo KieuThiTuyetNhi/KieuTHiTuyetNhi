@@ -9,7 +9,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Chi tiết sản phẩm</h1>
+                <h1>CHI TIẾT SẢN PHẨM</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('product.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 
@@ -62,6 +62,7 @@
                     <td>Tên link</td>
                     <td>{{$product->slug}}</td>
                 </tr>
+                
                 <tr>
                   <td>Giá bán</td>
                   <td>{{$product->price_buy}}</td>
@@ -72,7 +73,7 @@
             </tr>
             <tr>
               <td>Ngày đăng</td>
-              <td>{{$product->create_id}}</td>
+              <td>{{$product->created_at}}</td>
           </tr>
          
             </table>

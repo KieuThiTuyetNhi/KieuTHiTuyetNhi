@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả thương hiệu sản phẩm</h1>
+            <h1>TẤT CẢ THƯƠNG HIỆU SẢN PHẨM</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -56,7 +56,7 @@
             <tr>
               <th style="width:10px" class="text-center">#</th>
               <th style="width:90px">Hình</th>
-              <th style="width:100px">Tên danh mục</th>
+              <th style="width:100px">Tên thương hiệu</th>
               <th style="width:100px" >Slug</th>
               <th style="width:150px"  class="text-center">Ngày đăng</th>
               <th style="width:180px" class="text-center">Chức năng</th>

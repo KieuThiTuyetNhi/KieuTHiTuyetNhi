@@ -22,7 +22,7 @@
     <main role="main">
         <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
         <div class="container mt-2">
-            <h1 class="text-center">Liên hệ với Nền tảng</h1>
+            <h1 class="text-center">Liên hệ cho chúng tôi</h1>
             <div class="row">
                 <div class=" col-md-6">
                     <img src="{{ asset('assets/img/marketing/marketing-1.png')}}">
@@ -40,6 +40,11 @@
                             <label for="email">Email của bạn</label>
                             <input type="email" class="form-control" id="email" name="email"
                                 placeholder="Email của bạn">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại của bạn</label>
+                            <input type="phone" class="form-control" id="phone" name="phone"
+                                placeholder="Số diện thoại của bạn">
                         </div>
                         <div class="form-group">
                             <label for="title">Tiêu đề của bạn</label>

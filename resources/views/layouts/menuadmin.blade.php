@@ -65,6 +65,24 @@
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>
+          Đơn hàng
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+      
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{route('order.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tất cả đơn hàng</p>
+                </a>
+              </li>
+                      </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
            Giao diện
             <i class="right fas fa-angle-left"></i>
           </p>
@@ -125,7 +143,7 @@
           <p class="text">Đăng xuất</p>
         </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon far fa-circle text-warning"></i>
           <p>Warning</p>
@@ -136,6 +154,6 @@
           <i class="nav-icon far fa-circle text-info"></i>
           <p>Informational</p>
         </a>
-      </li>
+      </li> --}}
     </ul>
   </nav>

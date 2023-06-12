@@ -9,12 +9,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Chi tiết slider</h1>
+                <h1>CHI TIẾT SLIDER</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Chi tiết danh mục</li>
+                  <li class="breadcrumb-item active">Chi tiết slider</li>
                 </ol>
               </div>
             </div>
@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('slider.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 
@@ -51,11 +51,11 @@
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>id</td>
+                    <td>Mã</td>
                     <td>{{$slider->id}}</td>
                 </tr>
                 <tr>
-                    <td>name</td>
+                    <td>Tên slider</td>
                     <td>{{$slider->name}}</td>
                 </tr>
                 <tr>

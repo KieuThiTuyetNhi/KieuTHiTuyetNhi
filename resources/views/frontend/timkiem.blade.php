@@ -30,14 +30,14 @@
         
                 </h4>
                 <h3>{{$pro->price}}</h3>
-                <div class="product-star">
+                {{-- <div class="product-star">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-regular fa-star-half-stroke"></i>
                 <i class="fa-regular fa-star"></i>
-             </div>
-            <div class="btn  " >
+             </div> --}}
+            <div class="btn mt-4 " >
                 <i class="fa-solid fa-cart-plus"></i>
       <a style="text-decoration: none; color:black;"  onclick="AddCart({{$pro->id}})" href="javascript:" >Thêm vào giỏ hàng</a>
 

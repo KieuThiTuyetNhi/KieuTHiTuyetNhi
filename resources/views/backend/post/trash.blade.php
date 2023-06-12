@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả bài viết</h1>
+            <h1>SỌT RÁC</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
           </div>
           <div class="col-md-6 text-right">
             <a href="{{route('post.index')}}" class="btn btn-sm btn-info">
-                <i class="fas fa-trash"></i>Quay về danh sách
+                <i class="fas fa-undo"></i>Quay về danh sách
             </a>
           </div>
         </div> 

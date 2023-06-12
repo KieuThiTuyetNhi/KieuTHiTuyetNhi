@@ -10,7 +10,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Thêm bài viết</h1>
+                <h1>THÊM TRANG ĐƠN</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -37,7 +37,7 @@
                <i class="fas fa-save"></i>Lưu[Thêm]
                 </button>
                 <a href="{{route('page.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i>Quay về danh sách
+                  <i class="fas fa-undo"></i>Quay về danh sách
                    </a>
               </div>
             </div> 
@@ -77,7 +77,7 @@
                     
                     <div class="mb-3">
                       <label for="detail">Chi tiết</label>
-                      <textarea name="detail" id="detail" class="form-control" placeholder=" Nhập mô tả" >{{old('detail')}}</textarea>
+                      <textarea name="detail" id="txt_detail" class="form-control" placeholder=" Nhập mô tả" >{{old('detail')}}</textarea>
                       @if ($errors->has('detail'))
                          <div class="text-danger">
                           {{$errors->first('detail')}}  

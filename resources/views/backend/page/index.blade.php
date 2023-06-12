@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Tất cả bài viết')
+@section('title','Tất cả trang đơn')
 @section('content')
 @section('header')
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -16,12 +16,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả bài viết</h1>
+            <h1>TẤT CẢ TRANG ĐƠN</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-              <li class="breadcrumb-item active">Tất cả bài viết</li>
+              <li class="breadcrumb-item active">Tất cả trang đơn</li>
             </ol>
           </div>
         </div>
@@ -56,7 +56,7 @@
             <tr>
               <th style="width:10px" class="text-center">#</th>
               <th style="width:90px">Hình</th>
-              <th style="width:100px">Chủ đề bài viết</th>
+              <th style="width:100px">Chủ đề trang đơn</th>
               <th style="width:100px" >Slug</th>
               <th style="width:150px"  class="text-center">Ngày đăng</th>
               <th style="width:180px" class="text-center">Chức năng</th>

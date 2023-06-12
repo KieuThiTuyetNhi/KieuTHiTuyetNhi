@@ -35,7 +35,7 @@
                <i class="fas fa-save"></i>Lưu[Thêm]
                 </button>
                 <a href="{{route('product.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i>Quay về danh sách
+                  <i class="fas fa-undo"></i>Quay về danh sách
                    </a>
               </div>
             </div> 
@@ -93,7 +93,7 @@
                  <i class="fas fa-save"></i>Lưu[Thêm]
                   </button>
                   <a href="{{route('product.index')}}" class="btn btn-sm btn-info">
-                    <i class="fas fa-trash"></i>Quay về danh sách
+                    <i class="fas fa-undo"></i>Quay về danh sách
                      </a>
                 </div>
               </div> 

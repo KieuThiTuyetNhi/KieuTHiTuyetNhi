@@ -23,7 +23,8 @@
             </td>
             <td class="text-center">{{(number_format($item['price'])) }} đ</td>
             <td class="text-center"><a ><i class="fas fa-save" onclick="SaveItemListCart({{$item['productInfo']->id}});"></i></a></td>
-            <td class="text-center"><a><i class="fas fa-trash" onclick="DeleteItemListCart({{$item['productInfo']->id}});"> </i> </a> </td>        @endforeach
+            <td class="text-center"><a><i class="fas fa-trash" onclick="DeleteItemListCart({{$item['productInfo']->id}});"> </i> </a> </td>        
+              @endforeach
         @endif
     </tbody>
 </table>

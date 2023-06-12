@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Tất cả chủ đề</h1>
+            <h1>TẤT CẢ CHỦ ĐỀ</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -71,7 +71,7 @@
               </td>
               <td class="text-center" ><img style="width:80px" class="img-fluid" src="{{ asset('images/topic/' . $topic->image) }}"
                 alt="{{ $topic->image }}"></td>
-              <td class="text-center align-middle">{{$topic->name}}</td>
+              <td class="text-center align-middle">{{$topic->title}}</td>
               <td class="text-center align-middle">{{$topic->slug}}</td>
               <td class="text-center align-middle">{{$topic->created_at}}</td>
               <td class="text-center align-middle">

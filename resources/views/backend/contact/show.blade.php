@@ -39,7 +39,7 @@
                     <i class="fas fa-delete"></i>Xóa
                 </a>
                 <a href="{{route('contact.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i> Quay về danh sách
+                  <i class="fas fa-undo"></i> Quay về danh sách
                 </a>
               </div>
             </div> 
@@ -51,16 +51,16 @@
                     <td>Giá trị</td>
                 </tr>
                 <tr>
-                    <td>id</td>
+                    <td>Mã</td>
                     <td>{{$contact->id}}</td>
                 </tr>
                 <tr>
-                    <td>name</td>
+                    <td>Tên liên hệ</td>
                     <td>{{$contact->name}}</td>
                 </tr>
                 <tr>
-                    <td>slug</td>
-                    <td>{{$contact->slug}}</td>
+                    <td>Số điện thoại</td>
+                    <td>{{$contact->phone}}</td>
                 </tr>
                
             </table>

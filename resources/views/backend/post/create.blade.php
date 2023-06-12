@@ -10,12 +10,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Thêm bài viết</h1>
+                <h1>THÊM BÀI VIẾT</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                  <li class="breadcrumb-item active">Thêm thương hiệu</li>
+                  <li class="breadcrumb-item active">Thêm bài viết</li>
                 </ol>
               </div>
             </div>
@@ -37,7 +37,7 @@
                <i class="fas fa-save"></i>Lưu[Thêm]
                 </button>
                 <a href="{{route('post.index')}}" class="btn btn-sm btn-info">
-                  <i class="fas fa-trash"></i>Quay về danh sách
+                  <i class="fas fa-undo"></i>Quay về danh sách
                    </a>
               </div>
             </div> 
@@ -48,7 +48,7 @@
                 <div class="col-md-9">
                     <div class="mb-3">
                         <label for="title">Tên bài viết</label>
-                        <input type="text" value="{{old('title')}}" name="title" id='title' class="form-control" placeholder="Nhập tên danh mục">
+                        <input type="text" value="{{old('title')}}" name="title" id='title' class="form-control" placeholder="Nhập tên bài viết">
                         @if ($errors->has('title'))
                            <div class="text-danger">
                           {{$errors->first('title')}}  
@@ -76,7 +76,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="detail">Chi tiết</label>
-                      <textarea name="detail" id="detail" class="form-control" placeholder=" Nhập mô tả" >{{old('detail')}}</textarea>
+                      <textarea name="detail" id="txt_detail" class="form-control" placeholder=" Nhập mô tả" >{{old('detail')}}</textarea>
                       @if ($errors->has('detail'))
                          <div class="text-danger">
                           {{$errors->first('detail')}}  
